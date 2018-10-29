@@ -31,7 +31,7 @@ public class BasePage {
 		Assert.assertEquals(driver.getCurrentUrl().toLowerCase(), expectedUrl.toLowerCase(), "Incorrect URL!");
 	}
 
-	/**
+  /**
 	 * Verifies page title.
 	 *
 	 * @author jelena.corak
@@ -40,8 +40,8 @@ public class BasePage {
 	public void assertPageTitle(String expectedTitle) {
 		Assert.assertEquals(driver.getTitle().toLowerCase(), expectedTitle.toLowerCase(), "Incorrect title!");
 	}
-
-	/**
+  
+  /**
 	 * Scrolls element into view.
 	 *
 	 * @author jelena.corak
@@ -56,8 +56,8 @@ public class BasePage {
 			Assert.fail();
 		}
 	}
-
-	/**
+  
+  /**
 	 * Asserts that the link in the element is correct.
 	 *
 	 * @author jelena.corak
@@ -68,8 +68,8 @@ public class BasePage {
 		Assert.assertTrue(element.getAttribute("href").equalsIgnoreCase(expectedLink),
 				"Incorrect link for icon " + element.getAttribute("class"));
 	}
-
-	/**
+  
+  /**
 	 * Clicks on the element.
 	 * 
 	 * @author jelena.corak
@@ -82,9 +82,9 @@ public class BasePage {
 		eventElement.click();
 		log.debug("Clicked on element " + elementClass);
 	}
-
-	/**
-	 * Clicks directly to element in case of overlay.
+  
+  /**
+	 * Clicks directly on element in case of overlay.
 	 *
 	 * @author jelena.corak
 	 * @param By element search context
@@ -136,7 +136,7 @@ public class BasePage {
 	}
 
 	/**
-	 * @author Goran.Kukolj
+   * @author Goran.Kukolj
 	 * @param driver
 	 * @param locator
 	 * @param originalText

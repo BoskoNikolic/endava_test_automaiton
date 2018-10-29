@@ -87,7 +87,7 @@ public class AgilePage extends BasePage {
 	public By getAgileOnRibbonMenu() {
 		return agileOnRibbonMenu;
 	}
-
+  
 	public String getAgileUrl() {
 		return AGILE_URL;
 	}

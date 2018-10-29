@@ -189,8 +189,8 @@ public class HomePage extends BasePage {
 	}
 
 	/**
-	 * @author jelena.corak
 	 * @return By search context of the phone icon
+	 * @author jelena.corak
 	 */
 	public By getPhoneIcon() {
 		return phoneIcon;

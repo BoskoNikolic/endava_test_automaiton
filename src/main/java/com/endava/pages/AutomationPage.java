@@ -34,26 +34,26 @@ public class AutomationPage extends BasePage {
 	}
 
 	/**
-	 * @author Goran.Kukolj
 	 * @return web link element
+	 * @author Goran.Kukolj
 	 */
 	public By getAutomationPageLink() {
 		return automationPageLink;
 	}
 
 	/**
-	 * @author Goran.Kukolj
 	 * @return String endava automation url
+	 * @author Goran.Kukolj
 	 */
-	public String getEndavaAutomationUrl() {
+	public static String getEndavaAutomationUrl() {
 		return ENDAVA_AUTOMATION_URL;
 	}
 
 	/**
-	 * @author Goran.Kukolj
 	 * @return String endava automation title
+	 * @author Goran.Kukolj
 	 */
-	public String getEndavaAutomationTitle() {
+	public static String getEndavaAutomationTitle() {
 		return ENDAVA_AUTOMATION_TITLE;
 	}
 }

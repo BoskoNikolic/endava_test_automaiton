@@ -41,7 +41,7 @@ public class MenuPage extends BasePage {
 	public By getInvestorsMenuItem() {
 		return investorsMenuItem;
 	}
-	
+
 	/**
 	 * Returns text contained in the web element.
 	 *

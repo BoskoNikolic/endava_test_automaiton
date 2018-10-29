@@ -6,7 +6,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.endava.pages.BasePage;
 import com.endava.pages.ContactPage;
 import com.endava.pages.HomePage;
@@ -49,6 +48,7 @@ public class TestHomePage {
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		menuPage.assertPageUrl(homePage.getEndavaURL());
 		log.info("testOpenMenu()");
+
 	}
 
 	/**

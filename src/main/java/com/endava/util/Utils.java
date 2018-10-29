@@ -54,8 +54,8 @@ public class Utils {
 	/**
 	 * Returns option that disables infobars in Chrome browser.
 	 *
-	 * @author jelena.corak
 	 * @return ChromeOptions
+	 * @author jelena.corak
 	 */
 	public static ChromeOptions disableInfobarsOption() {
 		ChromeOptions options = new ChromeOptions();
