@@ -6,17 +6,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
 import com.endava.pages.AutomationPage;
-import com.endava.pages.BasePage;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
 import com.endava.util.Utils;
 
 /**
- * 
  * @author Goran.Kukolj
- *
  */
 public class TestAutomationPage {
 
@@ -33,8 +29,7 @@ public class TestAutomationPage {
 	}
 
 	/**
-	 * Test validates that automation link on automation page is active, and checks
-	 * if URL has changed
+	 * Test validates that automation link on automation page is active, and checks if URL has changed
 	 * 
 	 * @author Goran.Kukolj
 	 */
@@ -45,9 +40,9 @@ public class TestAutomationPage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		automationPage = menuPage.openAutomationPage();
-		Utils.webDriverWait(automationPage.driver, automationPage.getAutomationPageLink());		
+		Utils.webDriverWait(automationPage.driver, automationPage.getAutomationPageLink());
 		automationPage.assertPageTitle(automationPage.getEndavaAutomationTitle());
-		Assert.assertTrue(automationPage.isAutomationPageLinkActive(), "Link is not active.");		
+		Assert.assertTrue(automationPage.isAutomationPageLinkActive(), "Link is not active.");
 		automationPage.assertPageUrl(automationPage.getEndavaAutomationUrl());
 	}
 

@@ -1,5 +1,7 @@
 package com.endava.util;
 
+import java.util.Set;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -8,14 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 import com.endava.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.log4j.Logger;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Locatable;
-import org.openqa.selenium.interactions.internal.Coordinates;
 
 /**
  * @author Vladimir Krekic
@@ -26,9 +22,9 @@ public class Utils {
 	private static Logger log = Logger.getLogger(Utils.class);
 
 	/**
-	 * @author Vladimir Krekic
 	 * @param browser String that represents chosen browser from testng.xml file
 	 * @return HomePage
+	 * @author Vladimir Krekic
 	 */
 	public static HomePage setUpWebBrowser(String browser) {
 		HomePage homePage;
@@ -56,7 +52,7 @@ public class Utils {
 	}
 
 	/**
-	 * Returns option that disables infobars in chrome browser
+	 * Returns option that disables infobars in Chrome browser.
 	 *
 	 * @author jelena.corak
 	 * @return ChromeOptions
@@ -68,45 +64,20 @@ public class Utils {
 	}
 
 	/**
-	 * @author Vladimir Krekic Method is selecting (clicking on) WebElement
-	 * @param element WebElement
-	 * @return boolean
-	 */
-	public static boolean selectElement(WebElement element) {
-		makeItVisible(element);
-		if (element.isDisplayed()) {
-			element.click();
-			log.debug("WebElement clicked");
-			return true;
-		}
-		log.debug("WebElement not visible");
-		return false;
-	}
-
-	/**
-	 * @author Vladimir Krekic Makes web element visible
-	 * @param webElement
-	 */
-	public static void makeItVisible(WebElement webElement) {
-		Coordinates coordinates = ((Locatable) webElement).getCoordinates();
-		coordinates.inViewPort();
-	}
-
-	/**
-	 * Returns text contained in the web element.
+	 * Transfers control to other window
 	 * 
-	 * @author jelena.corak
-	 * @param WebDriver driver
-	 * @param By        Search context of a web element
-	 * 
-	 * @return String text of the web element
+	 * @author Goran.Kukolj
+	 * @param driver
 	 */
-	public static String getTextFromElement(WebDriver driver, By context) {
-		WebElement webElement = driver.findElement(context);
-		if (!webElement.isDisplayed()) {
-			Assert.fail("No element found.");
+	public static void switchControlToNewWindow(WebDriver driver) {
+		String mainWindow = driver.getWindowHandle();
+		Set<String> windows = driver.getWindowHandles();
+		for (String window : windows) {
+			if (!window.equals(mainWindow)) {
+				driver.switchTo().window(window);
+				break;
+			}
 		}
-		log.debug("Text contained in the following element(" + context + "): " + webElement.getText());
-		return webElement.getText();
+		log.debug("Transfers control to other window");
 	}
 }

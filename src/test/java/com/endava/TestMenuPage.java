@@ -10,7 +10,6 @@ import com.endava.util.Utils;
 
 /**
  * @author jelena.corak
- *
  */
 public class TestMenuPage {
 
@@ -18,10 +17,9 @@ public class TestMenuPage {
 	private MenuPage menuPage;
 	private static Logger log = Logger.getLogger(TestMenuPage.class);
 
-	/**
+	/**	 * 
 	 * @author jelena.corak
-	 * @param browser
-	 *            web browser defined in testng.xml
+	 * @param browser web browser defined in testng.xml
 	 */
 	@BeforeMethod
 	@Parameters({ "browser" })

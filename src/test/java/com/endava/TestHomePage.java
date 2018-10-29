@@ -1,24 +1,26 @@
 package com.endava;
 
-import com.endava.pages.BasePage;
 import org.apache.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+
+import com.endava.pages.BasePage;
+import com.endava.pages.ContactPage;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
 import com.endava.util.Utils;
 
 /**
  * @author jana.djordjevic@endava.com
- *
  */
 public class TestHomePage {
 
 	private HomePage homePage;
 	private MenuPage menuPage;
+	private ContactPage contactPage;
 	private static Logger log = Logger.getLogger(TestHomePage.class);
 
 	@BeforeTest
@@ -31,8 +33,8 @@ public class TestHomePage {
 	@Test(priority = 1)
 	public void testHomePageIsOpened() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());		
-		homePage.assertPageUrl(homePage.getEndavaURL());		
+		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(homePage.getEndavaURL());
 		homePage.assertPageTitle(homePage.getEndavaTitle());
 		log.info("testHomePageIsOpened()");
 	}
@@ -44,9 +46,58 @@ public class TestHomePage {
 		homePage.clickOnDownArrow();
 		Assert.assertTrue(homePage.isSolutionMenusVisible(), "Solution menus are not visible.");
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());		
+		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		menuPage.assertPageUrl(homePage.getEndavaURL());
 		log.info("testOpenMenu()");
+	}
+
+	/**
+	 * @author Vladimir Krekic At home page chooses 'Deutsch' language. Verifies that language is changed: check that
+	 *         url is https://www.endava.com/de-DE and then goes at bottom page and checks if copyright message has
+	 *         expected german text "Alle Rechte vorbehalten" (instead of 'All rights reserved'). Changes language back
+	 *         to 'English'. Verifies that language is changed : url should be https://www.endava.com/en and then goes
+	 *         at bottom page and check if copyright message has expected English text 'All rights reserved'.
+	 */
+	@Test(dependsOnMethods = { "testOpenMenu" })
+	public void testLanguageMenu() {
+		homePage.open();
+		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaURL(), "HomePage Url does not mach");
+		homePage.assertPageTitle(homePage.getEndavaTitle());
+		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
+		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
+		Utils.webDriverWait(homePage.driver, homePage.getDeutschLanguage());
+		homePage.selectElement(homePage.driver.findElement(homePage.getDeutschLanguage()));
+		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaDeUrl(),
+				"HomePage Deutsch lenguage does not mach");
+		Assert.assertTrue(homePage.driver.findElement(homePage.getCopyRightsMessage()).getText()
+				.contains("Alle Rechte vorbehalten"), "DE Copy Rights message does not mach");
+		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
+		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
+		Utils.webDriverWait(homePage.driver, homePage.getEnglishLanguage());
+		homePage.selectElement(homePage.driver.findElement(homePage.getEnglishLanguage()));
+		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaEnUrl(),
+				"HomePage English lenguage does not mach");
+		Assert.assertTrue(
+				homePage.driver.findElement(homePage.getCopyRightsMessage()).getText().contains(" All rights reserved"),
+				"EN Copy Rights message does not mach");
+	}
+
+	/**
+	 * Test validates that click on the phone icon is a link to the Contact page.
+	 *
+	 * @author jelena.corak
+	 */
+	@Test(priority = 3)
+	public void testPhoneIconLink() {
+		homePage.open();
+		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageTitle(homePage.getEndavaTitle());
+		homePage.assertPageUrl(homePage.getEndavaURL());
+		homePage.directClickOnElement(homePage.getPhoneIcon());
+		contactPage = homePage.clickToGetPage(ContactPage.class, homePage.getPhoneIcon());
+		homePage.assertPageUrl(contactPage.getContactUrl());
+		homePage.assertPageTitle(contactPage.getContactTitle());
+		log.info("testPhoneIconLink(): VALIDATION SUCCESSFUL! Phone icon link is a link to Contacts page.");
 	}
 
 	/**
@@ -59,10 +110,12 @@ public class TestHomePage {
 	public void testSocialMediaIconsLinks() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getSocialMediaIcons());
-		Assert.assertEquals(5, homePage.getSocialMediaIconList().size(), "Not all social media icons are visible on the home page.");
+		Assert.assertEquals(5, homePage.getSocialMediaIconList().size(),
+				"Not all social media icons are visible on the home page.");
 		log.info("testSocialMediaIconCount(): VALIDATION SUCCESSFUL! All icons are visible.");
 		for (int i = 0; i < homePage.getSocialMediaIconList().size(); i++)
-			BasePage.assertElementLink(homePage.getSocialMediaIconList().get(i), homePage.getListOfSocialMediaUrls().get(i));
+			BasePage.assertElementLink(homePage.getSocialMediaIconList().get(i),
+					homePage.getListOfSocialMediaUrls().get(i));
 		log.info("testSocialMediaIconsLinks(): VALIDATION SUCCESSFUL! All icons have correct links.");
 	}
 

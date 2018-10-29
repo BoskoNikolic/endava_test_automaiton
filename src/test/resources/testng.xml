@@ -5,19 +5,19 @@
 		<classes>
 			<class name="com.endava.TestHomePage" />
 		</classes>
-	</test> <!-- Test -->
+	</test>
 	<test thread-count="5" name="TestMenuPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestMenuPage" />
 		</classes>
-	</test> <!-- Test -->
+	</test>
 	<test thread-count="5" name="TestAgilePage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestAgilePage" />
 		</classes>
-	</test> <!-- Test -->
+	</test>
 	<test thread-count="5" name="TestAutomationPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -28,6 +28,19 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestInvestorsPage" />
+		</classes>
+	</test> <!-- Test -->
+	<test thread-count="5" name="TestContactPage">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.endava.TestContactPage" />
+		</classes>
+	</test>
+	<test thread-count="5" name="TestAboutPage">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.endava.TestAboutPage" />
+
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

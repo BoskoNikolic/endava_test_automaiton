@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * 
  * @author Goran.Kukolj
- *
  */
 public class AutomationPage extends BasePage {
 
@@ -23,7 +21,7 @@ public class AutomationPage extends BasePage {
 
 	/**
 	 * @author Goran.Kukolj
-	 * @return true or false depending on status of link
+	 * @return true or false depending on status of link 
 	 */
 	public boolean isAutomationPageLinkActive() {
 		WebElement element = driver.findElement(this.automationPageLink);
