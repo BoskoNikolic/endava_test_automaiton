@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.testng.Assert;
 
 /**
  * @author jana.djordjevic@endava.com
@@ -31,6 +32,8 @@ public class HomePage extends BasePage {
 	private By investors = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[5]/a");
 	private By phoneIcon = By.className("fe_phone");
 	private By socialMediaIcons = By.cssSelector("div.social:nth-child(1) > ul:nth-child(1)");
+	private By cookiesPolicyMessage = By.xpath("//*[@id=\"homePage\"]/div[7]");
+	private By cookiesLearnMore = By.xpath("//*[@id=\"homePage\"]/div[7]/div/div/div[2]/div/div[1]/p/a");	
 	private static Logger log = Logger.getLogger(HomePage.class);
 
 	public HomePage(WebDriver driver) {
@@ -195,6 +198,22 @@ public class HomePage extends BasePage {
 	public By getPhoneIcon() {
 		return phoneIcon;
 	}
+	
+	/**
+	 * @author jelena.corak
+	 * @return By search context of cookies policy message element
+	 */
+	public By getCookiesPolicyMessage() {
+		return cookiesPolicyMessage;
+	}
+
+	/**
+	 * @author jelena.corak
+	 * @return By search context of Learn More link element in the cookies policy message.
+	 */
+	public By getCookiesLearnMore() {
+		return cookiesLearnMore;
+	}
 
 	/**
 	 * @author jelena.corak
@@ -246,5 +265,23 @@ public class HomePage extends BasePage {
 		return driver.findElement(By.cssSelector("div.social:nth-child(1) > ul:nth-child(1)"))
 				.findElements(By.tagName("li")).stream().map(e -> e.findElement(By.tagName("a")))
 				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * Validates Cookies Policy element text.
+	 * 
+	 * @author jelena.corak
+	 */
+	public void validateCookiesPolicytext() {
+		WebElement cookiesMessage = driver.findElement(cookiesPolicyMessage);
+		if (cookiesMessage.isDisplayed()) {
+			WebElement cookiesTextElement = driver
+					.findElement(By.xpath("//*[@id=\"homePage\"]/div[7]/div/div/div[2]/div/div[1]/p/span"));
+			Assert.assertEquals(cookiesTextElement.getText(),
+					"By using this site you agree to the use of cookies for analytics, personalized content and ads.",
+					"Text in the cookie policy message is not correct!");
+		} else {
+			log.debug("Cookies policy message not present!");
+		}
 	}
 }
