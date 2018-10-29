@@ -38,17 +38,15 @@ class TestAgilePage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
-		Assert.assertEquals(agilePage.driver.getCurrentUrl(), AgilePage.getAgileUrl(), "Incorrect AgilePage Url");
-		agilePage.assertPageTitle(AgilePage.getAgileTitle());
-		Assert.assertEquals(agilePage.driver.findElement(agilePage.getAgileOnRibbonMenu()).getAttribute("class"),
-				"active");
-		log.debug(
-				"testAgileItemActiveInDAAMenu() - Test passed - AGILE menu item is active in DIGITAL - AGILE - AUTOMATION menu");
+		Assert.assertEquals(agilePage.driver.getCurrentUrl(), agilePage.getAgileUrl(), "Incorrect AgilePage Url");
+		agilePage.assertPageTitle(agilePage.getAgileTitle());
+		Assert.assertEquals(agilePage.driver.findElement(agilePage.getAgileOnRibbonMenu()).getAttribute("class"), "active");
+		log.debug("testAgileItemActiveInDAAMenu() - Test passed - AGILE menu item is active in DIGITAL - AGILE - AUTOMATION menu");
 	}
 
 	/**
-	 * Test checks autofill with linkedin button, validates new window pops up, and validates error messages when
-	 * invalid email is input
+	 * Test checks autofill with linkedin button, validates new window pops up, and validates error messages when invalid
+	 * email is input
 	 *
 	 * @author Goran.Kukolj
 	 */
@@ -59,27 +57,23 @@ class TestAgilePage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
-		agilePage.assertPageTitle(AgilePage.getAgileTitle());
-		agilePage.assertPageUrl(AgilePage.getAgileUrl());
+		agilePage.assertPageTitle(agilePage.getAgileTitle());
+		agilePage.assertPageUrl(agilePage.getAgileUrl());
 		agilePage.scrollToAutofillWithLinkedinButton();
 		agilePage.clickOnAutofillWithLinkedinButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
 		Utils.webDriverWait(agilePage.driver, agilePage.getSignInToLinkedinMessage());
-		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getSignInToLinkedinMessage(),
-				agilePage.getSignInToLinkedin()), "Strings for sign in are not the same");
+		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getSignInToLinkedinMessage(), agilePage.getSignInToLinkedin()), "Strings for sign in are not the same");
 		agilePage.assertPageTitle(agilePage.getPopUpWindowTitle());
 		agilePage.enterEmailAddress();
 		agilePage.clickOnAllowAccessButton();
-		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getEnterValidEmailErrorMessage(),
-				agilePage.getEnterValidEmail()), "Strings for email are not the same");
-		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getEnterPasswordErrorMessage(),
-				agilePage.getEnterPassword()), "Strings for password are not the same");
-		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getCorrectMarkedFieldsErrorMessage(),
-				agilePage.getCorrectMarkedFields()), "Strings for marked fields are not the same");
+		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getEnterValidEmailErrorMessage(), agilePage.getEnterValidEmail()), "Strings for email are not the same");
+		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getEnterPasswordErrorMessage(), agilePage.getEnterPassword()), "Strings for password are not the same");
+		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getCorrectMarkedFieldsErrorMessage(), agilePage.getCorrectMarkedFields()), "Strings for marked fields are not the same");
 		agilePage.assertPageUrl(agilePage.getPopUpWindowSubmitUrl());
 		agilePage.clickOnCancelButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
-		agilePage.assertPageUrl(AgilePage.getAgileUrl());
+		agilePage.assertPageUrl(agilePage.getAgileUrl());
 	}
 
 	@AfterClass

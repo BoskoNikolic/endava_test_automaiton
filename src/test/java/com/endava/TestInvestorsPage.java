@@ -30,7 +30,9 @@ public class TestInvestorsPage {
 	}
 
 	/**
-	 * @author jelena.corak Test validates that the string "ABOUT US" is visible on the "INVESTORS" page in the menu.
+	 * Test validates that the string "ABOUT US" is visible on the "INVESTORS" page in the menu.
+	 * 
+	 * @author jelena.corak 
 	 */
 	@Test
 	public void testAboutUsVisibility() {
@@ -40,8 +42,11 @@ public class TestInvestorsPage {
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
-		investorsPage = menuPage.clickOnInvestors();
-		investorsPage.assertPageUrl(InvestorsPage.getInvestorsUrl());
+		investorsPage = menuPage.clickToGetPage(InvestorsPage.class, menuPage.getInvestorsMenuItem());
+		investorsPage.assertPageUrl(investorsPage.getInvestorsUrl());
+		/*
+		 * Title verification skipped for Investors page because page title is incorrect.
+		 */
 		Utils.webDriverWait(investorsPage.driver, investorsPage.getInvestorsAboutUs());
 		Assert.assertTrue(investorsPage.getTextFromElement(investorsPage.getInvestorsAboutUs()).contains("ABOUT US"),
 				"Text \"ABOUT US\" not found!");
@@ -60,7 +65,7 @@ public class TestInvestorsPage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		investorsPage = homePage.openInvestorsPage();
-		Assert.assertEquals(InvestorsPage.getInvestorsUrl(), investorsPage.driver.getCurrentUrl(),
+		Assert.assertEquals(investorsPage.getInvestorsUrl(), investorsPage.driver.getCurrentUrl(),
 				"InvestorsPage Url does not match");
 		investorsPage.selectElement(investorsPage.getSearch());
 		investorsPage.fillSearchBox("blahblah");

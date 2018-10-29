@@ -20,7 +20,7 @@ class TestContactPage {
 	private static Logger log = Logger.getLogger(ContactPage.class);
 	private HomePage homePage;
 	private MenuPage menuPage;
-	private ContactPage contactsPage;
+	private ContactPage contactPage;
 
 	@BeforeTest
 	@Parameters({ "browser" })
@@ -41,16 +41,16 @@ class TestContactPage {
 		homePage.open();
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
-		contactsPage = homePage.openContactsPage();
-		Assert.assertEquals(ContactPage.getContactUrl(), contactsPage.driver.getCurrentUrl(), "ContactPage Url does not mach");
-		contactsPage.assertPageTitle(ContactPage.getContactTitle());
-		Assert.assertFalse(contactsPage.driver.findElement(contactsPage.getServicesRadioButton()).isSelected(),
+		contactPage = homePage.openContactsPage();
+		Assert.assertEquals(contactPage.getContactUrl(), contactPage.driver.getCurrentUrl(), "ContactPage Url does not mach");
+		contactPage.assertPageTitle(contactPage.getContactTitle());
+		Assert.assertFalse(contactPage.driver.findElement(contactPage.getServicesRadioButton()).isSelected(),
 				"Element \"ServiceRadioButton\" selected");
-		Assert.assertFalse(contactsPage.driver.findElement(contactsPage.getJoinRadioButton()).isSelected(), "Element \"JoinRadioButton\" selected");
-		contactsPage.selectElement(contactsPage.driver.findElement(contactsPage.getJoinRadioButton()));
-		Assert.assertFalse(contactsPage.getSearchResult(contactsPage.driver.findElement(contactsPage.getJoinMessage())).isEmpty(),
+		Assert.assertFalse(contactPage.driver.findElement(contactPage.getJoinRadioButton()).isSelected(), "Element \"JoinRadioButton\" selected");
+		contactPage.selectElement(contactPage.driver.findElement(contactPage.getJoinRadioButton()));
+		Assert.assertFalse(contactPage.getSearchResult(contactPage.driver.findElement(contactPage.getJoinMessage())).isEmpty(),
 				"Element \"JoinRadioButton\" not selected");
-		Assert.assertEquals(contactsPage.getMessage(), contactsPage.getSearchResult(contactsPage.driver.findElement(contactsPage.getJoinMessage())),
+		Assert.assertEquals(contactPage.getMessage(), contactPage.getSearchResult(contactPage.driver.findElement(contactPage.getJoinMessage())),
 				"JoinMessage does not mach");
 		log.debug("testContactPage() - test passed");
 	}

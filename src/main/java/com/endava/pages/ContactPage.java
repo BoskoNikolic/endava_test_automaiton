@@ -25,24 +25,24 @@ public class ContactPage extends BasePage {
     }
 
     /**
-     * @return String Contact page URL
      * @author jelena.corak
+     * @return String Contact page URL
      */
-    public static String getContactUrl() {
+    public String getContactUrl() {
         return CONTACT_URL;
     }
 
     /**
-     * @return String Contact page title
      * @author jelena.corak
+     * @return String Contact page title
      */
-    public static String getContactTitle() {
+    public String getContactTitle() {
         return CONTACT_TITLE;
     }
 
     /**
-     * @return By Contact menu item search context
      * @author jelena.corak
+     * @return By Contact menu item search context
      */
     public By getContactMenuItem() {
         return contactMenuItem;

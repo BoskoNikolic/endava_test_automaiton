@@ -52,7 +52,7 @@ public class Utils {
 	}
 
 	/**
-	 * Returns option that disables infobars in chrome browser
+	 * Returns option that disables infobars in Chrome browser.
 	 *
 	 * @return ChromeOptions
 	 * @author jelena.corak

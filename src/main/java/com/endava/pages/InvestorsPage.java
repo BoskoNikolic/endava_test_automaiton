@@ -37,11 +37,11 @@ public class InvestorsPage extends BasePage {
 		return submitButton;
 	}
 
-	public static String getInvestorsUrl() {
+	public String getInvestorsUrl() {
 		return INVESTORS_URL;
 	}
 
-	public static String getInvestorsTitle() {
+	public String getInvestorsTitle() {
 		return INVESTORS_TITLE;
 	}
 
@@ -52,8 +52,8 @@ public class InvestorsPage extends BasePage {
 	/**
 	 * Returns search context of About Us element on the INVESTORS page.
 	 *
-	 * @return By search context of About Us element
 	 * @author jelena.corak
+	 * @return By search context of About Us element
 	 */
 	public By getInvestorsAboutUs() {
 		return investorsAboutUs;

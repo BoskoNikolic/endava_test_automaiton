@@ -35,23 +35,11 @@ public class MenuPage extends BasePage {
 	/**
 	 * Returns search context of Investors element in the Menu.
 	 *
-	 * @return By search context of Investors element
 	 * @author jelena.corak
+	 * @return By search context of Investors element
 	 */
 	public By getInvestorsMenuItem() {
 		return investorsMenuItem;
-	}
-
-	/**
-	 * Finds the INVESTORS element in the menu and clicks on it.
-	 *
-	 * @author jelena.corak
-	 */
-	public InvestorsPage clickOnInvestors() {
-		WebElement investors = driver.findElement(investorsMenuItem);
-		Assert.assertTrue(investors.isDisplayed(), "Element INVESTORS is not present.");
-		investors.click();
-		return new InvestorsPage(driver);
 	}
 
 	/**

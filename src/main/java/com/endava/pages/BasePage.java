@@ -23,29 +23,29 @@ public class BasePage {
 
 	/**
 	 * Verifies page URL.
-	 *
-	 * @param String expected URL
+	 * 
 	 * @author jelena.corak
+	 * @param String expected URL
 	 */
 	public void assertPageUrl(String expectedUrl) {
 		Assert.assertEquals(driver.getCurrentUrl().toLowerCase(), expectedUrl.toLowerCase(), "Incorrect URL!");
 	}
 
-	/**
+  /**
 	 * Verifies page title.
 	 *
-	 * @param String expected title
 	 * @author jelena.corak
+	 * @param String expected title
 	 */
 	public void assertPageTitle(String expectedTitle) {
 		Assert.assertEquals(driver.getTitle().toLowerCase(), expectedTitle.toLowerCase(), "Incorrect title!");
 	}
-
-	/**
+  
+  /**
 	 * Scrolls element into view.
 	 *
-	 * @param By element search context
 	 * @author jelena.corak
+	 * @param By element search context
 	 */
 	public void scrollIntoView(By context) {
 		WebElement element = driver.findElement(context);
@@ -56,20 +56,20 @@ public class BasePage {
 			Assert.fail();
 		}
 	}
-
-	/**
+  
+  /**
 	 * Asserts that the link in the element is correct.
 	 *
+	 * @author jelena.corak
 	 * @param WebElement web element whose link is being checked
 	 * @param String expected link
-	 * @author jelena.corak
 	 */
 	public static void assertElementLink(WebElement element, String expectedLink) {
 		Assert.assertTrue(element.getAttribute("href").equalsIgnoreCase(expectedLink),
 				"Incorrect link for icon " + element.getAttribute("class"));
 	}
-
-	/**
+  
+  /**
 	 * Clicks on the element.
 	 * 
 	 * @author jelena.corak
@@ -82,12 +82,12 @@ public class BasePage {
 		eventElement.click();
 		log.debug("Clicked on element " + elementClass);
 	}
-
-	/**
-	 * Clicks directly to element in case of overlay.
+  
+  /**
+	 * Clicks directly on element in case of overlay.
 	 *
-	 * @param By element search context
 	 * @author jelena.corak
+	 * @param By element search context
 	 */
 	public void directClickOnElement(By context) {
 		WebElement element = driver.findElement(context);
@@ -100,9 +100,11 @@ public class BasePage {
 	}
 
 	/**
+	 * Method is selecting (clicking on) WebElement
+	 * 
+	 * @author Vladimir Krekic 
 	 * @param element WebElement
 	 * @return boolean
-	 * @author Vladimir Krekic Method is selecting (clicking on) WebElement
 	 */
 	public boolean selectElement(WebElement element) {
 		makeItVisible(element);
@@ -134,11 +136,11 @@ public class BasePage {
 	}
 
 	/**
+   * @author Goran.Kukolj
 	 * @param driver
 	 * @param locator
 	 * @param originalText
 	 * @return true or false depending on comparing two strings
-	 * @author Goran.Kukolj
 	 */
 
 	public boolean validateString(WebDriver driver, By locator, String originalText) {
@@ -169,6 +171,26 @@ public class BasePage {
 		if (this.driver != null) {
 			driver.quit();
 			log.debug("Browser closed");
+		}
+	}
+	
+	/**
+	 * Finds the element that takes user to a new page and clicks on it.
+	 * 
+	 * @author jelena.corak
+	 * @param Class<Page> class of the page to be opened
+	 * @param By search context of the element whose click takes user to a new page of the Class<Page> class
+	 * @return instance of a <Page> or null in case of an exception
+	 */
+	public <Page extends BasePage> Page clickToGetPage(Class<Page> pageClass, By context) {
+		WebElement element = driver.findElement(context);
+		Assert.assertTrue(element.isDisplayed(), "Element " + element + " is not present.");
+		element.click();
+		try {
+			return pageClass.getDeclaredConstructor(WebDriver.class).newInstance(this.driver);
+		} catch (Exception e) {			
+			log.debug(e.getMessage());
+			return null;
 		}
 	}
 }

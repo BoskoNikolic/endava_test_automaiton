@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import com.endava.pages.BasePage;
 import com.endava.pages.ContactPage;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
@@ -18,6 +19,7 @@ public class TestHomePage {
 
 	private HomePage homePage;
 	private MenuPage menuPage;
+	private ContactPage contactPage;
 	private static Logger log = Logger.getLogger(TestHomePage.class);
 
 	@BeforeTest
@@ -46,6 +48,7 @@ public class TestHomePage {
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		menuPage.assertPageUrl(homePage.getEndavaURL());
 		log.info("testOpenMenu()");
+
 	}
 
 	/**
@@ -91,9 +94,29 @@ public class TestHomePage {
 		homePage.assertPageTitle(homePage.getEndavaTitle());
 		homePage.assertPageUrl(homePage.getEndavaURL());
 		homePage.directClickOnElement(homePage.getPhoneIcon());
-		homePage.assertPageUrl(ContactPage.getContactUrl());
-		homePage.assertPageTitle(ContactPage.getContactTitle());
+		contactPage = homePage.clickToGetPage(ContactPage.class, homePage.getPhoneIcon());
+		homePage.assertPageUrl(contactPage.getContactUrl());
+		homePage.assertPageTitle(contactPage.getContactTitle());
 		log.info("testPhoneIconLink(): VALIDATION SUCCESSFUL! Phone icon link is a link to Contacts page.");
+	}
+
+	/**
+	 * Test validates that links of social media icons are correct.
+	 * 
+	 * @author jelena.corak
+	 * 
+	 */
+	@Test(priority = 4)
+	public void testSocialMediaIconsLinks() {
+		homePage.open();
+		Utils.webDriverWait(homePage.driver, homePage.getSocialMediaIcons());
+		Assert.assertEquals(5, homePage.getSocialMediaIconList().size(),
+				"Not all social media icons are visible on the home page.");
+		log.info("testSocialMediaIconCount(): VALIDATION SUCCESSFUL! All icons are visible.");
+		for (int i = 0; i < homePage.getSocialMediaIconList().size(); i++)
+			BasePage.assertElementLink(homePage.getSocialMediaIconList().get(i),
+					homePage.getListOfSocialMediaUrls().get(i));
+		log.info("testSocialMediaIconsLinks(): VALIDATION SUCCESSFUL! All icons have correct links.");
 	}
 
 	@AfterClass

@@ -17,9 +17,9 @@ public class TestMenuPage {
 	private MenuPage menuPage;
 	private static Logger log = Logger.getLogger(TestMenuPage.class);
 
-	/**
-	 * @param browser web browser defined in testng.xml
+	/**	 * 
 	 * @author jelena.corak
+	 * @param browser web browser defined in testng.xml
 	 */
 	@BeforeMethod
 	@Parameters({ "browser" })

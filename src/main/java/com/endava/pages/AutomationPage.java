@@ -20,8 +20,8 @@ public class AutomationPage extends BasePage {
 	}
 
 	/**
-	 * @return true or false depending on status of link
 	 * @author Goran.Kukolj
+	 * @return true or false depending on status of link 
 	 */
 	public boolean isAutomationPageLinkActive() {
 		WebElement element = driver.findElement(this.automationPageLink);
