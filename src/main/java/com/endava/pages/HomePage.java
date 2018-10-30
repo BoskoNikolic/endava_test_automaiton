@@ -280,9 +280,7 @@ public class HomePage extends BasePage {
 			Assert.assertEquals(cookiesTextElement.getText(),
 					"By using this site you agree to the use of cookies for analytics, personalized content and ads.",
 					"Text in the cookie policy message is not correct!");
-		} else {
-			log.debug("Cookies policy message not present!");
-			Assert.fail();
-		}
+		} else 			
+			Assert.fail("Cookies policy message not present!");		
 	}
 }
