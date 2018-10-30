@@ -12,6 +12,7 @@ import com.endava.pages.BasePage;
 import com.endava.pages.ContactPage;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
+import com.endava.pages.CookiePolicyPage; 
 import com.endava.util.Utils;
 
 /**
@@ -22,6 +23,7 @@ public class TestHomePage {
 	private HomePage homePage;
 	private MenuPage menuPage;
 	private ContactPage contactPage;
+	private CookiePolicyPage cookiePolicyPage;
 	private static Logger log = Logger.getLogger(TestHomePage.class);
 
 	@BeforeTest
@@ -121,7 +123,27 @@ public class TestHomePage {
 		log.info("testSocialMediaIconsLinks(): VALIDATION SUCCESSFUL! All icons have correct links.");
 	}
 	
-	@AfterMethod
+	/**
+	 * Validates text in cookies policy message. Clicks on "Learn More" and validates that user is taken to Cookie
+	 * Policy page.
+	 * 
+	 * @author jelena.corak
+	 * 
+	 */
+	@Test(priority = 5)
+	public void testCookiePolicy() {
+		homePage.open();
+		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(homePage.getEndavaURL());
+		homePage.assertPageTitle(homePage.getEndavaTitle());
+		homePage.validateCookiesPolicyText();
+		cookiePolicyPage = homePage.clickToGetPage(CookiePolicyPage.class, homePage.getCookiesLearnMore());		
+		homePage.assertPageUrl(cookiePolicyPage.getCookiePolicyUrl());
+		homePage.assertPageTitle(cookiePolicyPage.getCookiePolicyTitle());
+		log.info("VALIDATION SUCCESSFUL! Cookie text is correct and click on Learn More takes to Cookies Policy page.");
+	}	
+  
+  @AfterMethod
 	public void onTestFailure(ITestResult testResult) {
 		homePage.ifFailed(testResult);
 	}
