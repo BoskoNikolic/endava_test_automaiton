@@ -26,7 +26,7 @@ public class AgilePage extends BasePage {
 	private static final String ENTER_VALID_EMAIL = "Please enter a valid email address.";
 	private static final String ENTER_PASSWORD = "Please enter a password.";
 	private static final String CORRECT_MARKED_FIELDS = "Please correct the marked field(s) below.";
-	private static final String AGILE_URL = "https://www.endava.com/en/Agile";
+	private static final String AGILE_URL = getEndavaWebSiteUrlEn() + "/Agile";
 	private static final String AGILE_TITLE = "Agile";
 	private static Logger log = Logger.getLogger(AgilePage.class);
 

@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SuccessStoriesPage extends BasePage {		
 	
-	public static final String SUCCESS_STORIES_URL = "https://www.endava.com/en/Success-Stories";
+	public static final String SUCCESS_STORIES_URL = getEndavaWebSiteUrlEn() + "/Success-Stories";
 	public static final String SUCCESS_STORIES_TITLE = "Success Stories";	
 	private By heading = By.xpath("//*[@id=\"hero-contentcarousel\"]/div[1]/div/div/div/figure/figcaption/div/h2");
 	private By firstStory = By.cssSelector("body > section:nth-child(8) > div > div > div:nth-child(1) > a");

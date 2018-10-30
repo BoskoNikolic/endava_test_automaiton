@@ -16,7 +16,7 @@ import org.openqa.selenium.WebElement;
 
 public class AboutPage extends BasePage {
 
-	private static final String ABOUT_URL = "https://www.endava.com/en/About";
+	private static final String ABOUT_URL = getEndavaWebSiteUrlEn() + "/About";
 	private static final String ABOUT_TITLE = "About";
 	private static Logger log = Logger.getLogger(AboutPage.class);
 	private WebElement rightArrow = driver.findElement(By.xpath("//*[@id=\"all-locations\"]/div[2]/div[2]/div[2]"));

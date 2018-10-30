@@ -15,6 +15,9 @@ import org.testng.Assert;
 public class BasePage {
 
 	public WebDriver driver;
+	private static final String endavaWebSiteUrl = "https://www.endava.com";
+	private static final String endavaWebSiteUrlEn = "https://www.endava.com/en";
+	private static final String endavaWebSiteUrlDe = "https://www.endava.com/de-DE";
 	private static Logger log = Logger.getLogger(BasePage.class);
 
 	public BasePage(WebDriver driver) {
@@ -192,5 +195,17 @@ public class BasePage {
 			log.debug(e.getMessage());
 			return null;
 		}
+	}
+	
+	public static String getEndavaWebSiteUrl() {
+		return endavaWebSiteUrl;
+	}
+	
+	public static String getEndavaWebSiteUrlEn() {
+		return endavaWebSiteUrlEn;
+	}
+
+	public static String getEndavaWebSiteUrlDe() {
+		return endavaWebSiteUrlDe;
 	}
 }

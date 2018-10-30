@@ -14,10 +14,10 @@ import org.testng.Assert;
  */
 public class HomePage extends BasePage {
 
-	private static final String ENDAVA_URL = "https://www.endava.com/";
+	private static final String ENDAVA_URL = getEndavaWebSiteUrl() + "/";
 	private static final String ENDAVA_TITLE = "Endava";
-	private static final String ENDAVA_DE_URL = "https://www.endava.com/de-DE";
-	private static final String ENDAVA_EN_URL = "https://www.endava.com/en";
+	private static final String ENDAVA_DE_URL = getEndavaWebSiteUrlDe();
+	private static final String ENDAVA_EN_URL = getEndavaWebSiteUrlEn();
 	private By contactButtons = By.id("contact-buttons");
 	private By burgerMenu = By.id("menu-toggle");
 	private By solutionMenus = By.className("proposition-section");
