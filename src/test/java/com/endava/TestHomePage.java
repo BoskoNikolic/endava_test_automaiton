@@ -134,7 +134,7 @@ public class TestHomePage {
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(homePage.getEndavaURL());
 		homePage.assertPageTitle(homePage.getEndavaTitle());
-		homePage.validateCookiesPolicytext();
+		homePage.validateCookiesPolicyText();
 		cookiePolicyPage = homePage.clickToGetPage(CookiePolicyPage.class, homePage.getCookiesLearnMore());		
 		homePage.assertPageUrl(cookiePolicyPage.getCookiePolicyUrl());
 		homePage.assertPageTitle(cookiePolicyPage.getCookiePolicyTitle());
