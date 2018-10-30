@@ -2,6 +2,8 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -44,6 +46,11 @@ class TestAboutPage {
 		aboutPage.assertPageTitle(aboutPage.getAboutTitle());
 		Assert.assertTrue(aboutPage.checkAddresses(aboutPage.getAllLocations()), "Locations do not mach");
 		log.info("testAllLocations() - Test passed");
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		aboutPage.ifFailed(testResult);
 	}
 
 	@AfterTest

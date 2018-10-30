@@ -2,7 +2,9 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -117,6 +119,11 @@ public class TestHomePage {
 			BasePage.assertElementLink(homePage.getSocialMediaIconList().get(i),
 					homePage.getListOfSocialMediaUrls().get(i));
 		log.info("testSocialMediaIconsLinks(): VALIDATION SUCCESSFUL! All icons have correct links.");
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		homePage.ifFailed(testResult);
 	}
 
 	@AfterClass

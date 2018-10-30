@@ -2,6 +2,7 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -44,6 +45,11 @@ public class TestAutomationPage {
 		automationPage.assertPageTitle(automationPage.getEndavaAutomationTitle());
 		Assert.assertTrue(automationPage.isAutomationPageLinkActive(), "Link is not active.");
 		automationPage.assertPageUrl(automationPage.getEndavaAutomationUrl());
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		automationPage.ifFailed(testResult);
 	}
 
 	@AfterMethod
