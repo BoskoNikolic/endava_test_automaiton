@@ -19,9 +19,7 @@ import com.endava.util.Utils;
 public class TestHomePage {
 
 	private HomePage homePage;
-	private MenuPage menuPage;
-	private ContactPage contactPage;
-	private CookiePolicyPage cookiePolicyPage;
+	private MenuPage menuPage;	
 	private static Logger log = Logger.getLogger(TestHomePage.class);
 
 	@BeforeTest
@@ -35,8 +33,8 @@ public class TestHomePage {
 	public void testHomePageIsOpened() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageUrl(homePage.getEndavaURL());
-		homePage.assertPageTitle(homePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.getEndavaURL());
+		homePage.assertPageTitle(HomePage.getEndavaTitle());
 		log.info("testHomePageIsOpened()");
 	}
 
@@ -48,7 +46,7 @@ public class TestHomePage {
 		Assert.assertTrue(homePage.isSolutionMenusVisible(), "Solution menus are not visible.");
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
-		menuPage.assertPageUrl(homePage.getEndavaURL());
+		menuPage.assertPageUrl(HomePage.getEndavaURL());
 		log.info("testOpenMenu()");
 
 	}
@@ -63,13 +61,13 @@ public class TestHomePage {
 	@Test(dependsOnMethods = { "testOpenMenu" })
 	public void testLanguageMenu() {
 		homePage.open();
-		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaURL(), "HomePage Url does not mach");
-		homePage.assertPageTitle(homePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.getEndavaURL());		
+		homePage.assertPageTitle(HomePage.getEndavaTitle());
 		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
 		Utils.webDriverWait(homePage.driver, homePage.getDeutschLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getDeutschLanguage()));
-		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaDeUrl(),
+		Assert.assertEquals(homePage.driver.getCurrentUrl(), HomePage.getEndavaDeUrl(),
 				"HomePage Deutsch lenguage does not mach");
 		Assert.assertTrue(homePage.driver.findElement(homePage.getCopyRightsMessage()).getText()
 				.contains("Alle Rechte vorbehalten"), "DE Copy Rights message does not mach");
@@ -77,7 +75,7 @@ public class TestHomePage {
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
 		Utils.webDriverWait(homePage.driver, homePage.getEnglishLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getEnglishLanguage()));
-		Assert.assertEquals(homePage.driver.getCurrentUrl(), homePage.getEndavaEnUrl(),
+		Assert.assertEquals(homePage.driver.getCurrentUrl(), HomePage.getEndavaEnUrl(),
 				"HomePage English lenguage does not mach");
 		Assert.assertTrue(
 				homePage.driver.findElement(homePage.getCopyRightsMessage()).getText().contains(" All rights reserved"),
@@ -93,12 +91,11 @@ public class TestHomePage {
 	public void testPhoneIconLink() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageTitle(homePage.getEndavaTitle());
-		homePage.assertPageUrl(homePage.getEndavaURL());
-		homePage.directClickOnElement(homePage.getPhoneIcon());
-		contactPage = homePage.clickToGetPage(ContactPage.class, homePage.getPhoneIcon());
-		homePage.assertPageUrl(contactPage.getContactUrl());
-		homePage.assertPageTitle(contactPage.getContactTitle());
+		homePage.assertPageTitle(HomePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.getEndavaURL());
+		homePage.directClickOnElement(homePage.getPhoneIcon());		
+		homePage.assertPageUrl(ContactPage.getContactUrl());
+		homePage.assertPageTitle(ContactPage.getContactTitle());
 		log.info("testPhoneIconLink(): VALIDATION SUCCESSFUL! Phone icon link is a link to Contacts page.");
 	}
 
@@ -132,12 +129,12 @@ public class TestHomePage {
 	public void testCookiePolicy() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageUrl(homePage.getEndavaURL());
-		homePage.assertPageTitle(homePage.getEndavaTitle());
-		homePage.validateCookiesPolicyText();
-		cookiePolicyPage = homePage.clickToGetPage(CookiePolicyPage.class, homePage.getCookiesLearnMore());		
-		homePage.assertPageUrl(cookiePolicyPage.getCookiePolicyUrl());
-		homePage.assertPageTitle(cookiePolicyPage.getCookiePolicyTitle());
+		homePage.assertPageUrl(HomePage.getEndavaURL());
+		homePage.assertPageTitle(HomePage.getEndavaTitle());
+		homePage.validateCookiesPolicyText();			
+		homePage.clickOnElement(homePage.getCookiesLearnMore());		
+		homePage.assertPageUrl(CookiePolicyPage.getCookiePolicyUrl());
+		homePage.assertPageTitle(CookiePolicyPage.getCookiePolicyTitle());
 		log.info("VALIDATION SUCCESSFUL! Cookie text is correct and click on Learn More takes to Cookies Policy page.");
 	}	
 

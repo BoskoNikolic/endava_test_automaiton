@@ -88,11 +88,11 @@ public class AgilePage extends BasePage {
 		return agileOnRibbonMenu;
 	}
   
-	public String getAgileUrl() {
+	public static String getAgileUrl() {
 		return AGILE_URL;
 	}
 
-	public String getAgileTitle() {
+	public static String getAgileTitle() {
 		return AGILE_TITLE;
 	}
 

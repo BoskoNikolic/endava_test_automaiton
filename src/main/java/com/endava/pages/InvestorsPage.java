@@ -37,11 +37,11 @@ public class InvestorsPage extends BasePage {
 		return submitButton;
 	}
 
-	public String getInvestorsUrl() {
+	public static String getInvestorsUrl() {
 		return INVESTORS_URL;
 	}
 
-	public String getInvestorsTitle() {
+	public static String getInvestorsTitle() {
 		return INVESTORS_TITLE;
 	}
 

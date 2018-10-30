@@ -91,7 +91,7 @@ public class HomePage extends BasePage {
 	 * @return String endava URL
 	 * @author Goran.Kukolj
 	 */
-	public String getEndavaURL() {
+	public static String getEndavaURL() {
 		return ENDAVA_URL;
 	}
 
@@ -99,7 +99,7 @@ public class HomePage extends BasePage {
 	 * @return String endava title
 	 * @author Goran.Kukolj
 	 */
-	public String getEndavaTitle() {
+	public static String getEndavaTitle() {
 		return ENDAVA_TITLE;
 	}
 
@@ -123,7 +123,7 @@ public class HomePage extends BasePage {
 	 * @return String Endava Deutsch language Url
 	 * @author Vladimir Krekic
 	 */
-	public String getEndavaDeUrl() {
+	public static String getEndavaDeUrl() {
 		return ENDAVA_DE_URL;
 	}
 
@@ -131,7 +131,7 @@ public class HomePage extends BasePage {
 	 * @return String Endava English Url
 	 * @author Vladimir Krekic
 	 */
-	public String getEndavaEnUrl() {
+	public static String getEndavaEnUrl() {
 		return ENDAVA_EN_URL;
 	}
 

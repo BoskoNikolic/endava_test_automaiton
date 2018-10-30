@@ -90,11 +90,11 @@ public class AboutPage extends BasePage {
 		return allLocations;
 	}
 
-	public String getAboutUrl() {
+	public static String getAboutUrl() {
 		return ABOUT_URL;
 	}
 
-	public String getAboutTitle() {
+	public static String getAboutTitle() {
 		return ABOUT_TITLE;
 	}
 }

@@ -12,13 +12,13 @@ public class ContactPage extends BasePage {
 
     private static final String CONTACT_URL = getEndavaWebSiteUrlEn() + "/Contact";
     private static final String CONTACT_TITLE = "Contact Us";
-    private By contactMenuItem = By.xpath(".//*[@id='mCSB_1_container']/div[1]/nav/ul/li[10]/a");
-    private static Logger log = Logger.getLogger(ContactPage.class);
+    private By contactMenuItem = By.xpath(".//*[@id='mCSB_1_container']/div[1]/nav/ul/li[10]/a");    
     private By servicesRadioButton = By.xpath("//*[@id=\"contact-form\"]/fieldset[1]/p[1]/label");
     private By joinRadioButton = By.xpath("//*[@id=\"contact-form\"]/fieldset[1]/p[2]/label");
     private By joinMessage = By.xpath("//*[@id=\"please-visit\"]");
     private static final String MESSAGE = "Please visit the Careers section on our website to apply for job openings." +
             " Please use the form below if you have another question or important message.";
+    private static Logger log = Logger.getLogger(ContactPage.class);
 
     public ContactPage(WebDriver driver) {
         super(driver);
@@ -28,7 +28,7 @@ public class ContactPage extends BasePage {
      * @author jelena.corak
      * @return String Contact page URL
      */
-    public String getContactUrl() {
+    public static String getContactUrl() {
         return CONTACT_URL;
     }
 
@@ -36,7 +36,7 @@ public class ContactPage extends BasePage {
      * @author jelena.corak
      * @return String Contact page title
      */
-    public String getContactTitle() {
+    public static String getContactTitle() {
         return CONTACT_TITLE;
     }
 

@@ -17,7 +17,7 @@ public class CookiePolicyPage extends BasePage {
 	 * Returns page URL.	  
 	 * @author jelena.corak 
 	 */
-	public String getCookiePolicyUrl() {
+	public static String getCookiePolicyUrl() {
 		return COOKIE_POLICY_URL;
 	}
 
@@ -25,7 +25,7 @@ public class CookiePolicyPage extends BasePage {
 	 * Returns page title.	  
 	 * @author jelena.corak 
 	 */
-	public String getCookiePolicyTitle() {
+	public static String getCookiePolicyTitle() {
 		return COOKIE_POLICY_TITLE;
 	}
 }
