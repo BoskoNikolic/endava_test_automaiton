@@ -1,7 +1,9 @@
 package com.endava;
 
 import org.apache.log4j.Logger;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 import com.endava.pages.HomePage;
@@ -26,6 +28,11 @@ public class TestMenuPage {
 	public void setUp(String browser) {
 		homePage = Utils.setUpWebBrowser(browser);
 		log.info("setUp()");
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		menuPage.ifFailed(testResult);
 	}
 
 	@AfterClass
