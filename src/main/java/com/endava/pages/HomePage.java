@@ -272,7 +272,7 @@ public class HomePage extends BasePage {
 	 * 
 	 * @author jelena.corak
 	 */
-	public void validateCookiesPolicytext() {
+	public void validateCookiesPolicyText() {
 		WebElement cookiesMessage = driver.findElement(cookiesPolicyMessage);
 		if (cookiesMessage.isDisplayed()) {
 			WebElement cookiesTextElement = driver
@@ -282,6 +282,7 @@ public class HomePage extends BasePage {
 					"Text in the cookie policy message is not correct!");
 		} else {
 			log.debug("Cookies policy message not present!");
+			Assert.fail();
 		}
 	}
 }
