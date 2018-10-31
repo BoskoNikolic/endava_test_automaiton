@@ -1,5 +1,8 @@
 package com.endava.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +18,7 @@ public class MenuPage extends BasePage {
 	private By navigationList = By.className("navigation");
 	private By investorsMenuItem = By.xpath(".//*[@id='mCSB_1_container']/div[1]/nav/ul/li[5]/a");
 	private By successStoriesMenuItem = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[7]/a");
+	private By logo = By.xpath("//*[@id=\"header\"]/div/div[1]/div[1]/span/a");
 	private static Logger log = Logger.getLogger(MenuPage.class);
 
 	public MenuPage(WebDriver driver) {
@@ -42,7 +46,7 @@ public class MenuPage extends BasePage {
 	public By getInvestorsMenuItem() {
 		return investorsMenuItem;
 	}
-	
+
 	/**
 	 * Returns search context of Success Stories element in the Menu.
 	 * 
@@ -71,5 +75,15 @@ public class MenuPage extends BasePage {
 
 	public By getNavigationList() {
 		return navigationList;
+	}
+
+	/**
+	 * Returns search context of Endava logo element in menu pages (except Investors page).
+	 * 
+	 * @author jelena.corak
+	 * @return By search context of About Us element
+	 */
+	public By getLogo() {
+		return logo;
 	}
 }

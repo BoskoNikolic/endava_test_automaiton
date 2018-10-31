@@ -85,10 +85,10 @@ public class BasePage {
 	 */
 	public void clickOnElement(By context) {
 		WebElement eventElement = driver.findElement(context);
-		String elementClass = eventElement.getAttribute("class");
+		String elementToString = eventElement.toString();
 		Assert.assertTrue(eventElement.isDisplayed(), "Element is not present.");
 		eventElement.click();
-		log.debug("Clicked on element " + elementClass);
+		log.debug("Clicked on element " + elementToString);
 	}
   
   /**
