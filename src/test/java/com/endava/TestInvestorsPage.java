@@ -39,13 +39,13 @@ public class TestInvestorsPage {
 	@Test
 	public void testAboutUsVisibility() {
 		homePage.open();
-		homePage.assertPageUrl(homePage.getEndavaURL());
-		homePage.assertPageTitle(homePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		investorsPage = menuPage.clickToGetPage(InvestorsPage.class, menuPage.getInvestorsMenuItem());
-		investorsPage.assertPageUrl(investorsPage.getInvestorsUrl());
+		investorsPage.assertPageUrl(InvestorsPage.INVESTORS_URL);
 		/*
 		 * Title verification skipped for Investors page because page title is incorrect.
 		 */		
@@ -67,8 +67,7 @@ public class TestInvestorsPage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		investorsPage = homePage.openInvestorsPage();
-		Assert.assertEquals(investorsPage.getInvestorsUrl(), investorsPage.driver.getCurrentUrl(),
-				"InvestorsPage Url does not match");
+		investorsPage.assertPageUrl(InvestorsPage.INVESTORS_URL);		
 		investorsPage.selectElement(investorsPage.getSearch());
 		investorsPage.fillSearchBox("blahblah");
 		investorsPage.selectElement(investorsPage.getSubmitButton());

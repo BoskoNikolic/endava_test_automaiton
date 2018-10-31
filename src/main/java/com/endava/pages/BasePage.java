@@ -20,6 +20,9 @@ import com.endava.util.Utils;
 public class BasePage {
 
 	public WebDriver driver;
+	public static final String ENDAVA_WEBSITE_URL = "https://www.endava.com";
+	public static final String ENDAVA_URL_EN = "https://www.endava.com/en";
+	public static final String ENDAVA_URL_DE = "https://www.endava.com/de-DE";
 	private static Logger log = Logger.getLogger(BasePage.class);
 
 	public BasePage(WebDriver driver) {
@@ -198,7 +201,7 @@ public class BasePage {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Takes screen shot in case of test failure.
 	 * 

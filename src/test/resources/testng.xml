@@ -40,7 +40,12 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestAboutPage" />
-
+		</classes>
+	</test> <!-- Test -->
+	<test thread-count="5" name="TestSuccessStoriesPage">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.endava.TestSuccessStoriesPage" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->
