@@ -26,8 +26,8 @@ public class AgilePage extends BasePage {
 	private static final String ENTER_VALID_EMAIL = "Please enter a valid email address.";
 	private static final String ENTER_PASSWORD = "Please enter a password.";
 	private static final String CORRECT_MARKED_FIELDS = "Please correct the marked field(s) below.";
-	private static final String AGILE_URL = getEndavaWebSiteUrlEn() + "/Agile";
-	private static final String AGILE_TITLE = "Agile";
+	public static final String AGILE_URL = ENDAVA_URL_EN + "/Agile";
+	public static final String AGILE_TITLE = "Agile";
 	private static Logger log = Logger.getLogger(AgilePage.class);
 
 	protected AgilePage(WebDriver driver) {
@@ -88,14 +88,6 @@ public class AgilePage extends BasePage {
 		return agileOnRibbonMenu;
 	}
   
-	public static String getAgileUrl() {
-		return AGILE_URL;
-	}
-
-	public static String getAgileTitle() {
-		return AGILE_TITLE;
-	}
-
 	public By getAutofillWithLinkedinButton() {
 		return autofillWithLinkedinButton;
 	}

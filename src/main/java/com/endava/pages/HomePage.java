@@ -14,10 +14,8 @@ import org.testng.Assert;
  */
 public class HomePage extends BasePage {
 
-	private static final String ENDAVA_URL = getEndavaWebSiteUrl() + "/";
-	private static final String ENDAVA_TITLE = "Endava";
-	private static final String ENDAVA_DE_URL = getEndavaWebSiteUrlDe();
-	private static final String ENDAVA_EN_URL = getEndavaWebSiteUrlEn();
+	public static final String ENDAVA_URL = ENDAVA_WEBSITE_URL + "/";
+	public static final String ENDAVA_TITLE = "Endava";	
 	private By contactButtons = By.id("contact-buttons");
 	private By burgerMenu = By.id("menu-toggle");
 	private By solutionMenus = By.className("proposition-section");
@@ -43,7 +41,7 @@ public class HomePage extends BasePage {
 	public void open() {
 		driver.get(ENDAVA_URL);
 		driver.manage().window().maximize();
-		log.debug("Opens " + getEndavaURL());
+		log.debug("Opens " + ENDAVA_URL);
 	}
 
 	/**
@@ -86,23 +84,7 @@ public class HomePage extends BasePage {
 		log.debug("Checks if solution menus are visible");
 		return driver.findElement(solutionMenus).isDisplayed();
 	}
-
-	/**
-	 * @return String endava URL
-	 * @author Goran.Kukolj
-	 */
-	public static String getEndavaURL() {
-		return ENDAVA_URL;
-	}
-
-	/**
-	 * @return String endava title
-	 * @author Goran.Kukolj
-	 */
-	public static String getEndavaTitle() {
-		return ENDAVA_TITLE;
-	}
-
+	
 	/**
 	 * @return contact button element
 	 * @author Goran.Kukolj
@@ -117,22 +99,6 @@ public class HomePage extends BasePage {
 	 */
 	public By getLanguage() {
 		return language;
-	}
-
-	/**
-	 * @return String Endava Deutsch language Url
-	 * @author Vladimir Krekic
-	 */
-	public static String getEndavaDeUrl() {
-		return ENDAVA_DE_URL;
-	}
-
-	/**
-	 * @return String Endava English Url
-	 * @author Vladimir Krekic
-	 */
-	public static String getEndavaEnUrl() {
-		return ENDAVA_EN_URL;
 	}
 
 	/**

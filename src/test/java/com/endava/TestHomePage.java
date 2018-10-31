@@ -35,8 +35,8 @@ public class TestHomePage {
 	public void testHomePageIsOpened() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageUrl(HomePage.getEndavaURL());
-		homePage.assertPageTitle(HomePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		log.info("testHomePageIsOpened()");
 	}
 
@@ -48,7 +48,7 @@ public class TestHomePage {
 		Assert.assertTrue(homePage.isSolutionMenusVisible(), "Solution menus are not visible.");
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
-		menuPage.assertPageUrl(HomePage.getEndavaURL());
+		menuPage.assertPageUrl(HomePage.ENDAVA_URL);
 		log.info("testOpenMenu()");
 
 	}
@@ -63,22 +63,20 @@ public class TestHomePage {
 	@Test(dependsOnMethods = { "testOpenMenu" })
 	public void testLanguageMenu() {
 		homePage.open();
-		homePage.assertPageUrl(HomePage.getEndavaURL());		
-		homePage.assertPageTitle(HomePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);		
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
 		Utils.webDriverWait(homePage.driver, homePage.getDeutschLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getDeutschLanguage()));
-		Assert.assertEquals(homePage.driver.getCurrentUrl(), HomePage.getEndavaDeUrl(),
-				"HomePage Deutsch lenguage does not mach");
+		homePage.assertPageUrl(HomePage.ENDAVA_URL_DE);		
 		Assert.assertTrue(homePage.driver.findElement(homePage.getCopyRightsMessage()).getText()
 				.contains("Alle Rechte vorbehalten"), "DE Copy Rights message does not mach");
 		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
 		Utils.webDriverWait(homePage.driver, homePage.getEnglishLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getEnglishLanguage()));
-		Assert.assertEquals(homePage.driver.getCurrentUrl(), HomePage.getEndavaEnUrl(),
-				"HomePage English lenguage does not mach");
+		homePage.assertPageUrl(HomePage.ENDAVA_URL_EN);		
 		Assert.assertTrue(
 				homePage.driver.findElement(homePage.getCopyRightsMessage()).getText().contains(" All rights reserved"),
 				"EN Copy Rights message does not mach");
@@ -93,11 +91,11 @@ public class TestHomePage {
 	public void testPhoneIconLink() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageTitle(HomePage.getEndavaTitle());
-		homePage.assertPageUrl(HomePage.getEndavaURL());
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.directClickOnElement(homePage.getPhoneIcon());		
-		homePage.assertPageUrl(ContactPage.getContactUrl());
-		homePage.assertPageTitle(ContactPage.getContactTitle());
+		homePage.assertPageUrl(ContactPage.CONTACT_URL);
+		homePage.assertPageTitle(ContactPage.CONTACT_TITLE);
 		log.info("testPhoneIconLink(): VALIDATION SUCCESSFUL! Phone icon link is a link to Contacts page.");
 	}
 
@@ -131,12 +129,12 @@ public class TestHomePage {
 	public void testCookiePolicy() {
 		homePage.open();
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
-		homePage.assertPageUrl(HomePage.getEndavaURL());
-		homePage.assertPageTitle(HomePage.getEndavaTitle());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		homePage.validateCookiesPolicyText();			
 		homePage.clickOnElement(homePage.getCookiesLearnMore());		
-		homePage.assertPageUrl(CookiePolicyPage.getCookiePolicyUrl());
-		homePage.assertPageTitle(CookiePolicyPage.getCookiePolicyTitle());
+		homePage.assertPageUrl(CookiePolicyPage.COOKIE_POLICY_URL);
+		homePage.assertPageTitle(CookiePolicyPage.COOKIE_POLICY_TITLE);
 		log.info("VALIDATION SUCCESSFUL! Cookie text is correct and click on Learn More takes to Cookies Policy page.");
 	}	
   

@@ -32,22 +32,22 @@ public class TestSuccessStoriesPage {
 	@Test
 	public void testFirstStoryHeading() {
 		homePage.open();
-		homePage.assertPageUrl(HomePage.getEndavaURL()); 
-		homePage.assertPageTitle(HomePage.getEndavaTitle());		
+		homePage.assertPageUrl(HomePage.ENDAVA_URL); 
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);		
 		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());		
 		successStoriesPage = menuPage.clickToGetPage(SuccessStoriesPage.class, menuPage.getSuccessStoriesMenuItem());
-		successStoriesPage.assertPageUrl(SuccessStoriesPage.getSuccessStoriesUrl());
-		successStoriesPage.assertPageTitle(SuccessStoriesPage.getSuccessStoriesTitle());
+		successStoriesPage.assertPageUrl(SuccessStoriesPage.SUCCESS_STORIES_URL);
+		successStoriesPage.assertPageTitle(SuccessStoriesPage.SUCCESS_STORIES_TITLE);
 		Utils.webDriverWait(successStoriesPage.driver, successStoriesPage.getHeading());		
 		Assert.assertTrue(successStoriesPage.getTextFromElement(successStoriesPage.getHeading()).toUpperCase().contains(("Success Stories").toUpperCase()), "Text \"Success Stories\" not found!");
 		log.info("testHeading() : VALIDATION SUCCESSFUL! Success Stories page contains SUCCESS STORIES string.");
 		Utils.webDriverWait(menuPage.driver, successStoriesPage.getFirstStory());	
 		successStoriesPage.scrollIntoView(successStoriesPage.getFirstStory());		
 		successStoriesPage.clickOnElement(successStoriesPage.getFirstStory());
-		successStoriesPage.assertPageTitle(SuccessStoriesPage.getFirstStoryTitle());
-		successStoriesPage.assertPageUrl(SuccessStoriesPage.getFirstStoryUrl());		
+		successStoriesPage.assertPageTitle(SuccessStoriesPage.FIRST_STORY_TITLE);
+		successStoriesPage.assertPageUrl(SuccessStoriesPage.FIRST_STORY_URL);		
 		Assert.assertTrue(successStoriesPage.getTextFromElement(successStoriesPage.getFirstStoryHeading()).toUpperCase()
 				.equals(successStoriesPage.getFirstStoryText().toUpperCase()), 
 				"Text in the first story title does not match the text on the first story page heading.");

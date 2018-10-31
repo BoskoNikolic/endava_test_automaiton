@@ -42,9 +42,9 @@ public class TestAutomationPage {
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		automationPage = menuPage.openAutomationPage();
 		Utils.webDriverWait(automationPage.driver, automationPage.getAutomationPageLink());
-		automationPage.assertPageTitle(AutomationPage.getEndavaAutomationTitle());
+		automationPage.assertPageTitle(AutomationPage.ENDAVA_AUTOMATION_TITLE);
 		Assert.assertTrue(automationPage.isAutomationPageLinkActive(), "Link is not active.");
-		automationPage.assertPageUrl(AutomationPage.getEndavaAutomationUrl());
+		automationPage.assertPageUrl(AutomationPage.ENDAVA_AUTOMATION_URL);
 	}
 	
 	@AfterMethod

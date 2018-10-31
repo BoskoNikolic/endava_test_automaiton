@@ -40,8 +40,8 @@ class TestAgilePage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
-		agilePage.assertPageUrl(AgilePage.getAgileUrl());		
-		agilePage.assertPageTitle(AgilePage.getAgileTitle());
+		agilePage.assertPageUrl(AgilePage.AGILE_URL);		
+		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
 		Assert.assertEquals(agilePage.driver.findElement(agilePage.getAgileOnRibbonMenu()).getAttribute("class"), "active");
 		log.debug("testAgileItemActiveInDAAMenu() - Test passed - AGILE menu item is active in DIGITAL - AGILE - AUTOMATION menu");
 	}
@@ -59,8 +59,8 @@ class TestAgilePage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
-		agilePage.assertPageTitle(AgilePage.getAgileTitle());
-		agilePage.assertPageUrl(AgilePage.getAgileUrl());
+		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
+		agilePage.assertPageUrl(AgilePage.AGILE_URL);
 		agilePage.scrollToAutofillWithLinkedinButton();
 		agilePage.clickOnAutofillWithLinkedinButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
@@ -75,7 +75,7 @@ class TestAgilePage {
 		agilePage.assertPageUrl(agilePage.getPopUpWindowSubmitUrl());
 		agilePage.clickOnCancelButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
-		agilePage.assertPageUrl(AgilePage.getAgileUrl());
+		agilePage.assertPageUrl(AgilePage.AGILE_URL);
 	}
 	
 	@AfterMethod

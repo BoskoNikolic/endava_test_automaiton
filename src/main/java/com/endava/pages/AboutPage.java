@@ -16,8 +16,8 @@ import org.openqa.selenium.WebElement;
 
 public class AboutPage extends BasePage {
 
-	private static final String ABOUT_URL = getEndavaWebSiteUrlEn() + "/About";
-	private static final String ABOUT_TITLE = "About";
+	public static final String ABOUT_URL = ENDAVA_URL_EN + "/About";
+	public static final String ABOUT_TITLE = "About";
 	private static Logger log = Logger.getLogger(AboutPage.class);
 	private WebElement rightArrow = driver.findElement(By.xpath("//*[@id=\"all-locations\"]/div[2]/div[2]/div[2]"));
 	private By cities = By.xpath("//*[@id=\"all-locations\"]/div[1]/div/div[*]/div/h3");
@@ -88,13 +88,5 @@ public class AboutPage extends BasePage {
 
 	public Set<String> getAllLocations() {
 		return allLocations;
-	}
-
-	public static String getAboutUrl() {
-		return ABOUT_URL;
-	}
-
-	public static String getAboutTitle() {
-		return ABOUT_TITLE;
 	}
 }

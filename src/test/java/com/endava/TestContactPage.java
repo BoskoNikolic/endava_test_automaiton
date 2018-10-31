@@ -44,8 +44,8 @@ class TestContactPage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
 		contactPage = homePage.openContactsPage();
-		Assert.assertEquals(ContactPage.getContactUrl(), contactPage.driver.getCurrentUrl(), "ContactPage Url does not mach");
-		contactPage.assertPageTitle(ContactPage.getContactTitle());
+		contactPage.assertPageUrl(ContactPage.CONTACT_URL);		
+		contactPage.assertPageTitle(ContactPage.CONTACT_TITLE);
 		Assert.assertFalse(contactPage.driver.findElement(contactPage.getServicesRadioButton()).isSelected(),
 				"Element \"ServiceRadioButton\" selected");
 		Assert.assertFalse(contactPage.driver.findElement(contactPage.getJoinRadioButton()).isSelected(), "Element \"JoinRadioButton\" selected");

@@ -10,8 +10,8 @@ import org.openqa.selenium.WebElement;
  */
 public class AutomationPage extends BasePage {
 
-	private static final String ENDAVA_AUTOMATION_URL = getEndavaWebSiteUrlEn() + "/Automation";
-	private static final String ENDAVA_AUTOMATION_TITLE = "Automation";
+	public static final String ENDAVA_AUTOMATION_URL = ENDAVA_URL_EN + "/Automation";
+	public static final String ENDAVA_AUTOMATION_TITLE = "Automation";
 	private By automationPageLink = By.xpath("//*[@id=\"secondary-nav\"]/ul/li[3]");
 	private static Logger log = Logger.getLogger(AutomationPage.class);
 
@@ -39,21 +39,5 @@ public class AutomationPage extends BasePage {
 	 */
 	public By getAutomationPageLink() {
 		return automationPageLink;
-	}
-
-	/**
-	 * @return String endava automation url
-	 * @author Goran.Kukolj
-	 */
-	public static String getEndavaAutomationUrl() {
-		return ENDAVA_AUTOMATION_URL;
-	}
-
-	/**
-	 * @return String endava automation title
-	 * @author Goran.Kukolj
-	 */
-	public static String getEndavaAutomationTitle() {
-		return ENDAVA_AUTOMATION_TITLE;
 	}
 }
