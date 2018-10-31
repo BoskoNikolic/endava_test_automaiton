@@ -2,6 +2,8 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -55,6 +57,11 @@ class TestContactPage {
 		log.debug("testContactPage() - test passed");
 	}
 
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		contactPage.ifFailed(testResult);
+	}
+	
 	@AfterTest
 	public void tearDown() {
 		homePage.quit();

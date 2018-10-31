@@ -1,5 +1,7 @@
 package com.endava.pages;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Locatable;
 import org.openqa.selenium.interactions.internal.Coordinates;
 import org.testng.Assert;
+import org.testng.ITestResult;
+
+import com.endava.util.Utils;
 
 /**
  * @author jana.djordjevic@endava.com
@@ -207,5 +212,20 @@ public class BasePage {
 
 	public static String getEndavaWebSiteUrlDe() {
 		return endavaWebSiteUrlDe;
+
+	/**
+	 * Takes screen shot in case of test failure.
+	 * 
+	 * @author jelena.corak
+	 * @param ITestResult	
+	 */
+	public void ifFailed(ITestResult testResult) {
+		if (testResult.getStatus() == ITestResult.FAILURE) {
+			try {
+				Utils.takeScreenShot(driver, testResult.getMethod().getMethodName());
+			} catch (IOException e) {
+				log.error("Screenshot failed." + e.getMessage());
+			}
+		}
 	}
 }

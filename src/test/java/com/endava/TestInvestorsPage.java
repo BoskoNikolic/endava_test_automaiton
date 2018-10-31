@@ -2,6 +2,8 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -46,7 +48,7 @@ public class TestInvestorsPage {
 		investorsPage.assertPageUrl(InvestorsPage.getInvestorsUrl());
 		/*
 		 * Title verification skipped for Investors page because page title is incorrect.
-		 */
+		 */		
 		Utils.webDriverWait(investorsPage.driver, investorsPage.getInvestorsAboutUs());
 		Assert.assertTrue(investorsPage.getTextFromElement(investorsPage.getInvestorsAboutUs()).contains("ABOUT US"),
 				"Text \"ABOUT US\" not found!");
@@ -73,6 +75,11 @@ public class TestInvestorsPage {
 				investorsPage.getSearchResult(investorsPage.driver.findElement(investorsPage.getSearchResultElement())),
 				investorsPage.getSearchResult(), "Wrong search result");
 		log.info("testInvestorsSearch() - test passed");
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		investorsPage.ifFailed(testResult);
 	}
 
 	@AfterTest

@@ -1,13 +1,21 @@
 package com.endava.util;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Set;
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.endava.pages.HomePage;
@@ -79,5 +87,22 @@ public class Utils {
 			}
 		}
 		log.debug("Transfers control to other window");
+	}
+	
+	/**
+	 * Takes screenshot.
+	 * 
+	 * @author jelena.corak
+	 * 
+	 * @param driver
+	 * @throws Exception
+	 */
+	public static void takeScreenShot(WebDriver driver, String testName) throws IOException {
+		WebDriver augmentedDriver = new Augmenter().augment(driver);
+		TakesScreenshot screenShot = ((TakesScreenshot) augmentedDriver);
+		File srcFile = screenShot.getScreenshotAs(OutputType.FILE);
+		String filePath = "test-output/screenshot_" + testName + "_" + new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(new Date()) + ".jpg";
+		File destinationFile = new File(filePath);
+		FileUtils.copyFile(srcFile, destinationFile);
 	}
 }

@@ -2,7 +2,9 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -74,6 +76,11 @@ class TestAgilePage {
 		agilePage.clickOnCancelButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
 		agilePage.assertPageUrl(AgilePage.getAgileUrl());
+	}
+	
+	@AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		agilePage.ifFailed(testResult);
 	}
 
 	@AfterClass

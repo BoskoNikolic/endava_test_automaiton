@@ -2,7 +2,9 @@ package com.endava;
 
 import org.apache.log4j.Logger;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -137,6 +139,11 @@ public class TestHomePage {
 		homePage.assertPageTitle(CookiePolicyPage.getCookiePolicyTitle());
 		log.info("VALIDATION SUCCESSFUL! Cookie text is correct and click on Learn More takes to Cookies Policy page.");
 	}	
+  
+  @AfterMethod
+	public void onTestFailure(ITestResult testResult) {
+		homePage.ifFailed(testResult);
+	}
 
 	@AfterClass
 	public void tearDown() {
