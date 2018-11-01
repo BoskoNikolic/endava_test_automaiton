@@ -34,7 +34,7 @@ public class TestHomePage {
 	@Test(priority = 1)
 	public void testHomePageIsOpened() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		log.info("testHomePageIsOpened()");
@@ -43,11 +43,11 @@ public class TestHomePage {
 	@Test(priority = 2)
 	public void testOpenMenu() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.clickOnDownArrow();
 		Assert.assertTrue(homePage.isSolutionMenusVisible(), "Solution menus are not visible.");
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		menuPage.assertPageUrl(HomePage.ENDAVA_URL);
 		log.info("testOpenMenu()");
 
@@ -65,16 +65,16 @@ public class TestHomePage {
 		homePage.open();
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);		
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
-		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
-		Utils.webDriverWait(homePage.driver, homePage.getDeutschLanguage());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getDeutschLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getDeutschLanguage()));
 		homePage.assertPageUrl(HomePage.ENDAVA_URL_DE);		
 		Assert.assertTrue(homePage.driver.findElement(homePage.getCopyRightsMessage()).getText()
 				.contains("Alle Rechte vorbehalten"), "DE Copy Rights message does not mach");
-		Utils.webDriverWait(homePage.driver, homePage.getLanguage());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getLanguage()));
-		Utils.webDriverWait(homePage.driver, homePage.getEnglishLanguage());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getEnglishLanguage());
 		homePage.selectElement(homePage.driver.findElement(homePage.getEnglishLanguage()));
 		homePage.assertPageUrl(HomePage.ENDAVA_URL_EN);		
 		Assert.assertTrue(
@@ -90,7 +90,7 @@ public class TestHomePage {
 	@Test(priority = 3)
 	public void testPhoneIconLink() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.directClickOnElement(homePage.getPhoneIcon());		
@@ -108,7 +108,7 @@ public class TestHomePage {
 	@Test(priority = 4)
 	public void testSocialMediaIconsLinks() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getSocialMediaIcons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getSocialMediaIcons());
 		Assert.assertEquals(5, homePage.getSocialMediaIconList().size(),
 				"Not all social media icons are visible on the home page.");
 		log.info("testSocialMediaIconCount(): VALIDATION SUCCESSFUL! All icons are visible.");
@@ -128,7 +128,7 @@ public class TestHomePage {
 	@Test(priority = 5)
 	public void testCookiePolicy() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		homePage.validateCookiesPolicyText();			
@@ -136,7 +136,27 @@ public class TestHomePage {
 		homePage.assertPageUrl(CookiePolicyPage.COOKIE_POLICY_URL);
 		homePage.assertPageTitle(CookiePolicyPage.COOKIE_POLICY_TITLE);
 		log.info("VALIDATION SUCCESSFUL! Cookie text is correct and click on Learn More takes to Cookies Policy page.");
-	}	
+	}
+	
+	/**
+	 * After text in cookies policy message has been validated, closes the message and validates that
+	 * it is not present anymore.
+	 * 
+	 * @author jelena.corak
+	 * 
+	 */
+	@Test(dependsOnMethods = { "testCookiePolicy" })
+	public void testCookiePolicyVisibility() {
+		homePage.open();
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getCookiesCloseMessage());
+		homePage.clickOnElement(homePage.getCookiesCloseMessage());	
+		Utils.webDriverWaitInvisibility(homePage.driver, homePage.getCookiesPolicyMessage());		
+		Assert.assertTrue(homePage.getElement(homePage.getCookiesPolicyMessage()) == null, "Cookie Policy message is still present.");
+		log.info("VALIDATION SUCCESSFUL! Cookie policy message has been removed.");
+	}
   
   @AfterMethod
 	public void onTestFailure(ITestResult testResult) {

@@ -31,7 +31,8 @@ public class HomePage extends BasePage {
 	private By phoneIcon = By.className("fe_phone");
 	private By socialMediaIcons = By.cssSelector("div.social:nth-child(1) > ul:nth-child(1)");
 	private By cookiesPolicyMessage = By.xpath("//*[@id=\"homePage\"]/div[7]");
-	private By cookiesLearnMore = By.xpath("//*[@id=\"homePage\"]/div[7]/div/div/div[2]/div/div[1]/p/a");	
+	private By cookiesLearnMore = By.xpath("//*[@id=\"homePage\"]/div[7]/div/div/div[2]/div/div[1]/p/a");
+	private By cookiesCloseMessage = By.xpath("//*[@id=\"homePage\"]/div[7]/div/div/div[2]/div/div[2]/a");
 	private static Logger log = Logger.getLogger(HomePage.class);
 
 	public HomePage(WebDriver driver) {
@@ -179,6 +180,14 @@ public class HomePage extends BasePage {
 	 */
 	public By getCookiesLearnMore() {
 		return cookiesLearnMore;
+	}
+	
+	/**
+	 * @author jelena.corak
+	 * @return By search context of cookie policy close item
+	 */
+	public By getCookiesCloseMessage() {
+		return cookiesCloseMessage;
 	}
 
 	/**

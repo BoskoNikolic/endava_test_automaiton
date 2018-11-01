@@ -40,17 +40,17 @@ public class TestMenuPage {
 	@Test
 	public void testIsEndavaLogoLinkToHomePageInAllMenuPages() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
 		for (int i = 0; i < menuPage.getMenuItemsByList().size(); i++) {
 			homePage.open();
-			Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+			Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 			homePage.assertPageUrl(HomePage.ENDAVA_URL);
 			homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 			menuPage = homePage.openMenu();
-			Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+			Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 			menuPage.scrollIntoView(menuPage.getMenuItemsByList().get(i));
 			menuPage.clickOnElement(menuPage.getMenuItemsByList().get(i));
 			menuPage.assertPageUrl(menuPage.getMenuPagesUrlList().get(i));

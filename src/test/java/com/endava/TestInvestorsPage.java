@@ -41,15 +41,15 @@ public class TestInvestorsPage {
 		homePage.open();
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		investorsPage = menuPage.clickToGetPage(InvestorsPage.class, menuPage.getInvestorsMenuItem());
 		investorsPage.assertPageUrl(InvestorsPage.INVESTORS_URL);
 		/*
 		 * Title verification skipped for Investors page because page title is incorrect.
 		 */		
-		Utils.webDriverWait(investorsPage.driver, investorsPage.getInvestorsAboutUs());
+		Utils.webDriverWaitVisibility(investorsPage.driver, investorsPage.getInvestorsAboutUs());
 		Assert.assertTrue(investorsPage.getTextFromElement(investorsPage.getInvestorsAboutUs()).contains("ABOUT US"),
 				"Text \"ABOUT US\" not found!");
 		log.info("testAboutUsVisibility() : VALIDATION SUCCESSFUL!");
@@ -65,7 +65,7 @@ public class TestInvestorsPage {
 	public void testInvestorsSearch() {
 		homePage.open();
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		investorsPage = homePage.openInvestorsPage();
 		investorsPage.assertPageUrl(InvestorsPage.INVESTORS_URL);		
 		investorsPage.selectElement(investorsPage.getSearch());

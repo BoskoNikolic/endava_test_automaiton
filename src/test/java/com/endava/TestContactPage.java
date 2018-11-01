@@ -42,7 +42,7 @@ class TestContactPage {
 	public void testContactPage() {
 		homePage.open();
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		contactPage = homePage.openContactsPage();
 		contactPage.assertPageUrl(ContactPage.CONTACT_URL);		
 		contactPage.assertPageTitle(ContactPage.CONTACT_TITLE);

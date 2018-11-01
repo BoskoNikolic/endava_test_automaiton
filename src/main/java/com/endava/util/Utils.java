@@ -55,15 +55,27 @@ public class Utils {
 	 * @param driver
 	 * @param locator
 	 */
-	public static void webDriverWait(WebDriver driver, By locator) {
+	public static void webDriverWaitVisibility(WebDriver driver, By locator) {
 		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+	
+	/**
+	 * Waits for invisibility of element.
+	 * 
+	 * @author jelena.corak
+	 * 
+	 * @param driver
+	 * @param locator
+	 */
+	public static void webDriverWaitInvisibility(WebDriver driver, By locator) {
+		new WebDriverWait(driver, 5).until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
 	/**
 	 * Returns option that disables infobars in Chrome browser.
 	 *
-	 * @return ChromeOptions
 	 * @author jelena.corak
+	 * @return ChromeOptions	  
 	 */
 	public static ChromeOptions disableInfobarsOption() {
 		ChromeOptions options = new ChromeOptions();
