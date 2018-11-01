@@ -1,8 +1,7 @@
-package com.endava.util;
+package resources.dataProviders;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
-
 import com.endava.pages.AboutPage;
 import com.endava.pages.AgilePage;
 import com.endava.pages.AutomationPage;
@@ -20,6 +19,15 @@ import com.endava.pages.SuccessStoriesPage;
 public class MenuDataProvider {
 	@DataProvider(name = "MenuDataProvider")
 	public static Object[][] getDataFromDataprovider() {
+		
+		/*
+		 * Investors page (5th element in the menu list) has been left out from the data set due to following issues:
+		 * - Page title is incorrect.
+		 * - Logo element is different than on other pages. It has a different xpath and an overlay
+		 * 	(cookie policy message).
+		 * - Order of menu items in the menu is different than on other pages.
+		 */
+		
 		Object[][] menuDataArray = new Object[9][3];
 
 		for (int i = 0; i < menuDataArray.length; i++) {

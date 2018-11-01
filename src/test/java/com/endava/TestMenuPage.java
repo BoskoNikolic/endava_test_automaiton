@@ -9,8 +9,8 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
-import com.endava.util.MenuDataProvider;
 import com.endava.util.Utils;
+import resources.dataProviders.MenuDataProvider;
 
 /**
  * @author jelena.corak
