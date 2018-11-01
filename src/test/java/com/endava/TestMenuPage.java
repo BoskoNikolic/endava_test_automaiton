@@ -37,6 +37,7 @@ public class TestMenuPage {
 	 * 
 	 * @author jelena.corak	  
 	 */
+
 	@Test(dataProvider = "MenuDataProvider", dataProviderClass = MenuDataProvider.class)
 	public void testIsEndavaLogoLinkToHomePageInAllMenuPages(By element, String url, String title) {
 		homePage.open();
