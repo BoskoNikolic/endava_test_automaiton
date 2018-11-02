@@ -45,7 +45,7 @@ public class TestMenuPage {
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		menuPage.scrollIntoView(element);
 		String elementText = menuPage.getTextFromElement(element);
 		menuPage.clickOnElement(element);

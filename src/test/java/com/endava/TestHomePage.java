@@ -158,7 +158,7 @@ public class TestHomePage {
 		log.info("VALIDATION SUCCESSFUL! Cookie policy message has been removed.");
 	}
   
-  @AfterMethod
+	@AfterMethod
 	public void onTestFailure(ITestResult testResult) {
 		homePage.ifFailed(testResult);
 	}
