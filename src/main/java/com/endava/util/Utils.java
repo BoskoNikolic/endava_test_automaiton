@@ -107,7 +107,8 @@ public class Utils {
 	 * @author jelena.corak
 	 * 
 	 * @param driver
-	 * @throws Exception
+	 * @param String test name
+	 * @throws IOException
 	 */
 	public static void takeScreenShot(WebDriver driver, String testName) throws IOException {
 		WebDriver augmentedDriver = new Augmenter().augment(driver);

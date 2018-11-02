@@ -3,7 +3,6 @@ package com.endava;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -11,6 +10,7 @@ import org.testng.annotations.Test;
 import com.endava.pages.HomePage;
 import com.endava.pages.MenuPage;
 import com.endava.util.Utils;
+import resources.dataProviders.MenuDataProvider;
 
 /**
  * @author jelena.corak
@@ -37,32 +37,24 @@ public class TestMenuPage {
 	 * 
 	 * @author jelena.corak	  
 	 */
-	@Test
-	public void testIsEndavaLogoLinkToHomePageInAllMenuPages() {
+
+	@Test(dataProvider = "MenuDataProvider", dataProviderClass = MenuDataProvider.class)
+	public void testIsEndavaLogoLinkToHomePageInAllMenuPages(By element, String url, String title) {
 		homePage.open();
 		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
-		for (int i = 0; i < menuPage.getMenuItemsByList().size(); i++) {
-			homePage.open();
-			Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
-			homePage.assertPageUrl(HomePage.ENDAVA_URL);
-			homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
-			menuPage = homePage.openMenu();
-			Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-			menuPage.scrollIntoView(menuPage.getMenuItemsByList().get(i));
-			menuPage.clickOnElement(menuPage.getMenuItemsByList().get(i));
-			menuPage.assertPageUrl(menuPage.getMenuPagesUrlList().get(i));
-			menuPage.assertPageTitle(menuPage.getMenuPagesTitleList().get(i));
-			menuPage.clickOnElement(menuPage.getLogo());
-			menuPage.assertPageUrl(HomePage.ENDAVA_URL_EN);
-			menuPage.assertPageTitle(HomePage.ENDAVA_TITLE);
-			log.info("VALIDATION SUCCESSFUL: Endava logo is link to home page.");
-		}
-		
-		
-		log.info("VALIDATION SUCCESSFUL: Endava logo is link to home page in all menu pages.");
+		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		menuPage.scrollIntoView(element);
+		String elementText = menuPage.getTextFromElement(element);
+		menuPage.clickOnElement(element);
+		menuPage.assertPageUrl(url);
+		menuPage.assertPageTitle(title);
+		menuPage.clickOnElement(menuPage.getLogo());
+		menuPage.assertPageUrl(HomePage.ENDAVA_URL_EN);
+		menuPage.assertPageTitle(HomePage.ENDAVA_TITLE);		
+		log.info("VALIDATION SUCCESSFUL: Endava logo is link to home page on " + elementText + " page.");		
 	}
 
 	@AfterMethod
@@ -70,9 +62,9 @@ public class TestMenuPage {
 		menuPage.ifFailed(testResult);
 	}
 
-	@AfterClass
+	@AfterMethod
 	public void tearDown() {
-		menuPage.quit();
+		homePage.quit();
 		log.info("tearDown()");
 	}
 }
