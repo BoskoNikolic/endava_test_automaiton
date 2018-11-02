@@ -40,7 +40,7 @@ class TestAboutPage {
 	public void testAllLocations() {
 		homePage.open();
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		aboutPage = homePage.openAboutPage();
 		aboutPage.assertPageUrl(AboutPage.ABOUT_URL);		
 		aboutPage.assertPageTitle(AboutPage.ABOUT_TITLE);

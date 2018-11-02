@@ -41,7 +41,7 @@ public class TestMenuPage {
 	@Test(dataProvider = "MenuDataProvider", dataProviderClass = MenuDataProvider.class)
 	public void testIsEndavaLogoLinkToHomePageInAllMenuPages(By element, String url, String title) {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();

@@ -38,7 +38,7 @@ class TestAgilePage {
 	public void testAgileItemActiveInDAAMenu() {
 		homePage.open();
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
 		agilePage.assertPageUrl(AgilePage.AGILE_URL);		
 		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
@@ -55,16 +55,16 @@ class TestAgilePage {
 	@Test(priority = 2)
 	public void testAutofillWithLinkedin() {
 		homePage.open();
-		Utils.webDriverWait(homePage.driver, homePage.getContactButtons());
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
-		Utils.webDriverWait(menuPage.driver, menuPage.getNavigationList());
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		agilePage = homePage.openAgilePage();
 		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
 		agilePage.assertPageUrl(AgilePage.AGILE_URL);
 		agilePage.scrollToAutofillWithLinkedinButton();
 		agilePage.clickOnAutofillWithLinkedinButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
-		Utils.webDriverWait(agilePage.driver, agilePage.getSignInToLinkedinMessage());
+		Utils.webDriverWaitVisibility(agilePage.driver, agilePage.getSignInToLinkedinMessage());
 		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getSignInToLinkedinMessage(), agilePage.getSignInToLinkedin()), "Strings for sign in are not the same");
 		agilePage.assertPageTitle(agilePage.getPopUpWindowTitle());
 		agilePage.enterEmailAddress();
