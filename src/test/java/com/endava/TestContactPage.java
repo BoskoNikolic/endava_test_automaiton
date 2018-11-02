@@ -41,9 +41,12 @@ class TestContactPage {
 	@Test
 	public void testContactPage() {
 		homePage.open();
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
-		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		contactPage = homePage.openContactsPage();
+		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());		
+		contactPage = menuPage.clickToGetPage(ContactPage.class, menuPage.getContact());
 		contactPage.assertPageUrl(ContactPage.CONTACT_URL);		
 		contactPage.assertPageTitle(ContactPage.CONTACT_TITLE);
 		Assert.assertFalse(contactPage.driver.findElement(contactPage.getServicesRadioButton()).isSelected(),

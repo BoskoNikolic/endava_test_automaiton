@@ -15,23 +15,14 @@ public class MenuPage extends BasePage {
 	private By navigationList = By.className("navigation");
 	private By investorsMenuItem = By.xpath(".//*[@id='mCSB_1_container']/div[1]/nav/ul/li[5]/a");
 	private By successStoriesMenuItem = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[7]/a");
+	private By agileItem = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[2]/a");
+	private By about = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[8]/a");
+	private By contact = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[10]/a");
 	private By logo = By.xpath("//*[@id=\"header\"]/div/div[1]/div[1]/span/a");
 	private static Logger log = Logger.getLogger(MenuPage.class);
 
 	public MenuPage(WebDriver driver) {
 		super(driver);
-	}
-
-	/**
-	 * Checks if link is present on the page and clicks on it
-	 *
-	 * @return driver to automationPage
-	 * @author Goran.Kukolj
-	 */
-	public AutomationPage openAutomationPage() {
-		driver.findElement(this.automationMenuItem).click();
-		log.debug("Finds automation menu item in burger menu and clicks on it");
-		return new AutomationPage(driver);
 	}
 
 	/**
@@ -82,5 +73,37 @@ public class MenuPage extends BasePage {
 	 */
 	public By getLogo() {
 		return logo;
+	}
+	
+	/**
+	 * @author jelena.corak
+	 * @return By search context of About menu item
+	 */
+	public By getAbout() {
+		return about;
+	}
+	
+	/**
+	 * @author jelena.corak
+	 * @return By search context of Contact menu item
+	 */
+	public By getContact() {
+		return contact;
+	}	
+	
+	/**
+	 * @author jelena.corak
+	 * @return By search context of Agile menu item
+	 */
+	public By getAgileItem() {
+		return agileItem;
+	}
+
+	/**
+	 * @author jelena.corak
+	 * @return By search context of Automation menu item
+	 */
+	public By getAutomationMenuItem() {
+		return automationMenuItem;
 	}
 }

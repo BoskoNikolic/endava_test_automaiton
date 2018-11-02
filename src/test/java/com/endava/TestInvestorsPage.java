@@ -64,9 +64,12 @@ public class TestInvestorsPage {
 	@Test
 	public void testInvestorsSearch() {
 		homePage.open();
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		investorsPage = homePage.openInvestorsPage();
+		investorsPage = menuPage.clickToGetPage(InvestorsPage.class, menuPage.getInvestorsMenuItem());
 		investorsPage.assertPageUrl(InvestorsPage.INVESTORS_URL);		
 		investorsPage.selectElement(investorsPage.getSearch());
 		investorsPage.fillSearchBox("blahblah");

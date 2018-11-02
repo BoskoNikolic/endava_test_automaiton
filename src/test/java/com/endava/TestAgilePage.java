@@ -37,9 +37,12 @@ class TestAgilePage {
 	@Test(priority = 1)
 	public void testAgileItemActiveInDAAMenu() {
 		homePage.open();
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		agilePage = homePage.openAgilePage();
+		agilePage = menuPage.clickToGetPage(AgilePage.class, menuPage.getAgileItem());
 		agilePage.assertPageUrl(AgilePage.AGILE_URL);		
 		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
 		Assert.assertEquals(agilePage.driver.findElement(agilePage.getAgileOnRibbonMenu()).getAttribute("class"), "active");
@@ -56,11 +59,14 @@ class TestAgilePage {
 	public void testAutofillWithLinkedin() {
 		homePage.open();
 		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		agilePage = homePage.openAgilePage();
+		agilePage = menuPage.clickToGetPage(AgilePage.class, menuPage.getAgileItem());
 		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
 		agilePage.assertPageUrl(AgilePage.AGILE_URL);
+		String agileWindow = agilePage.driver.getWindowHandle();
 		agilePage.scrollToAutofillWithLinkedinButton();
 		agilePage.clickOnAutofillWithLinkedinButton();
 		Utils.switchControlToNewWindow(agilePage.driver);
@@ -74,8 +80,10 @@ class TestAgilePage {
 		Assert.assertTrue(agilePage.validateString(agilePage.driver, agilePage.getCorrectMarkedFieldsErrorMessage(), agilePage.getCorrectMarkedFields()), "Strings for marked fields are not the same");
 		agilePage.assertPageUrl(agilePage.getPopUpWindowSubmitUrl());
 		agilePage.clickOnCancelButton();
-		Utils.switchControlToNewWindow(agilePage.driver);
+		agilePage.driver.switchTo().window(agileWindow);		
 		agilePage.assertPageUrl(AgilePage.AGILE_URL);
+		agilePage.assertPageTitle(AgilePage.AGILE_TITLE);
+		log.info("Validation successful! Autofill functionality is as expected.");
 	}
 	
 	@AfterMethod

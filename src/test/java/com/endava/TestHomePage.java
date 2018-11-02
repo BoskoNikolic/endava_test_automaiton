@@ -37,7 +37,7 @@ public class TestHomePage {
 		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
 		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
-		log.info("testHomePageIsOpened()");
+		log.info("Home Page is opened.");
 	}
 
 	@Test(priority = 2)
@@ -49,7 +49,7 @@ public class TestHomePage {
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
 		menuPage.assertPageUrl(HomePage.ENDAVA_URL);
-		log.info("testOpenMenu()");
+		log.info("Menu Page is opened.");
 
 	}
 
@@ -108,6 +108,8 @@ public class TestHomePage {
 	@Test(priority = 4)
 	public void testSocialMediaIconsLinks() {
 		homePage.open();
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
 		Utils.webDriverWaitVisibility(homePage.driver, homePage.getSocialMediaIcons());
 		Assert.assertEquals(5, homePage.getSocialMediaIconList().size(),
 				"Not all social media icons are visible on the home page.");

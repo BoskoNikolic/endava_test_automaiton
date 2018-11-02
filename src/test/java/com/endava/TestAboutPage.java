@@ -39,13 +39,16 @@ class TestAboutPage {
 	@Test
 	public void testAllLocations() {
 		homePage.open();
+		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		aboutPage = homePage.openAboutPage();
+		aboutPage = menuPage.clickToGetPage(AboutPage.class, menuPage.getAbout());
 		aboutPage.assertPageUrl(AboutPage.ABOUT_URL);		
 		aboutPage.assertPageTitle(AboutPage.ABOUT_TITLE);
 		Assert.assertTrue(aboutPage.checkAddresses(aboutPage.getAllLocations()), "Locations do not mach");
-		log.info("testAllLocations() - Test passed");
+		log.info("testAllLocations() - All locations match.");
 	}
 	
 	@AfterMethod
