@@ -38,13 +38,16 @@ public class TestAutomationPage {
 	public void testAutomationMenuIsActive() {
 		homePage.open();
 		Utils.webDriverWaitVisibility(homePage.driver, homePage.getContactButtons());
+		homePage.assertPageUrl(HomePage.ENDAVA_URL);
+		homePage.assertPageTitle(HomePage.ENDAVA_TITLE);
 		menuPage = homePage.openMenu();
 		Utils.webDriverWaitVisibility(menuPage.driver, menuPage.getNavigationList());
-		automationPage = menuPage.openAutomationPage();
+		automationPage = menuPage.clickToGetPage(AutomationPage.class, menuPage.getAutomationMenuItem());
 		Utils.webDriverWaitVisibility(automationPage.driver, automationPage.getAutomationPageLink());
 		automationPage.assertPageTitle(AutomationPage.ENDAVA_AUTOMATION_TITLE);
 		Assert.assertTrue(automationPage.isAutomationPageLinkActive(), "Link is not active.");
 		automationPage.assertPageUrl(AutomationPage.ENDAVA_AUTOMATION_URL);
+		log.info("Automation link is active.");
 	}
 	
 	@AfterMethod

@@ -1,3 +1,4 @@
+
 package com.endava.pages;
 
 import java.io.IOException;
@@ -82,6 +83,7 @@ public class BasePage {
 	 * @param By Search context of a web element
 	 */
 	public void clickOnElement(By context) {
+		scrollIntoView(context);
 		WebElement eventElement = driver.findElement(context);
 		String elementToString = eventElement.toString();
 		Assert.assertTrue(eventElement.isDisplayed(), "Element is not present.");
@@ -189,7 +191,8 @@ public class BasePage {
 	 * @return instance of a <Page> or null in case of an exception
 	 */
 	public <Page extends BasePage> Page clickToGetPage(Class<Page> pageClass, By context) {
-		WebElement element = driver.findElement(context);
+		scrollIntoView(context);
+		WebElement element = driver.findElement(context);		
 		Assert.assertTrue(element.isDisplayed(), "Element " + element + " is not present.");
 		element.click();
 		try {
