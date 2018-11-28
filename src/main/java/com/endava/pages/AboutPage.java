@@ -81,17 +81,16 @@ public class AboutPage extends BasePage {
 					.peek(log::debug) // prints list of elements not matching
 					.count() == 0;
 		}
+		else{
 		String[] stringAddress = addresses.toArray(new String[addresses.size()]);
 		for (int i = 0; i <  ADDRESSES_OF_ENDAVA_LOCATIONS.size() ; i++)
 		{
 			boolean logic = false;
-			for (int j = 0; j <  addresses.size(); j++)
-			{
+			for (int j = 0; j <  addresses.size(); j++){
 				if ( ADDRESSES_OF_ENDAVA_LOCATIONS.get(i).toString().equals(stringAddress[j].toString())){
 					logic = true;
 				}
-				if (j == addresses.size()-1 && logic == false)
-				{
+				if (j == addresses.size()-1 && logic == false)	{
 					log.debug("Not found: " + ADDRESSES_OF_ENDAVA_LOCATIONS.get(i));
 				}
 			}
@@ -99,6 +98,7 @@ public class AboutPage extends BasePage {
 		log.debug("Number of grabbed addresses not matching. Size of set should be "
 				+ ADDRESSES_OF_ENDAVA_LOCATIONS.size() + " found: " + addresses.size());
 		return false;
+		}
 	}
 
 	public Set<String> getAllLocations() {
