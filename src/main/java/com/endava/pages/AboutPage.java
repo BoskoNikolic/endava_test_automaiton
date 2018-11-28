@@ -1,5 +1,6 @@
 package com.endava.pages;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -25,18 +26,17 @@ public class AboutPage extends BasePage {
 	private List<WebElement> listOfCities = driver.findElements(cities);
 	private List<WebElement> listOfAddresses = driver.findElements(addresses);
 	private Set<String> allLocations = setAllLocations();
-	private static final List<String> ADDRESSES_OF_ENDAVA_LOCATIONS = Arrays.asList("BELGRADE",
-			"9đ, Milutina Milankovića St.", "BOGOTÁ", "Calle 96 No. 10-38, Edificio BOX, 7th & 8th Floor, Bogota D.C.",
-			"ATLANTA", "One Glenlake Pkwy, Suite 784", "AMSTERDAM", "Laapersveld 43, Hilversum", "CARACAS",
-			"Av. Francisco de MirandaTorre HP, Piso 18. Municipio Chacao", "BUCHAREST",
-			"4G Vasile Milea Blvd., 9th floor, AFI 3 Business Park", "BUENOS AIRES", "San Martin 439", "CHISINAU",
-			"15 Sfatul Tarii St.", "FRANKFURT", "Eschersheimer Landstraße 14", "COPENHAGEN", "UNIVATE, Njalsgade 76",
-			"CLUJ-NAPOCA", "51 Al. Vaida Voevod St.", "DENVER", "2420 17th St.", "LONDON", "125 Old Broad Street",
-			"MONTEVIDEO", "Rio Negro 1338/3", "MEDELLÍN", "Cra 48 A # 15 sur – 84", "IASI",
-			"3E Palat St. Palas, United Business Center 1 - 5th Floor", "ROSARIO", "Urquiza 2284", "NEW YORK",
-			"757 3rd Avenue Suite 1901, NY, 10017 USA", "NEW JERSEY", "5 Hilltop Road, Mendham", "PARANÁ",
-			"Buenos Aires 60", "SOFIA", "89b Vitosha Blvd., Millenium Business Center, 9th & 10th Floor", "SEATTLE",
-			"12900 NE 180th Street, #240", "SKOPJE", "Kale Building, UI. 11 Mart Br. 2");
+	private static final List<String> ADDRESSES_OF_ENDAVA_LOCATIONS = Arrays.asList("BELGRADE", "BOGOTÁ", "ATLANTA", "BUCHAREST", "AMSTERDAM",
+			"Calle 96 No. 10-38, Edificio BOX, 7th & 8th Floor, Bogota D.C.", "9đ, Milutina Milankovića St.", "One Glenlake Pkwy, Suite 784", 
+			"4G Vasile Milea Blvd., 9th floor, AFI 3 Business Park", "Laapersveld 43, Hilversum", "COPENHAGEN", "CLUJ-NAPOCA", "BUENOS AIRES", "CHISINAU", "2420 17th St.", 
+			"51 Al. Vaida Voevod St.", "San Martin 439", "15 Sfatul Tarii St.", 
+			"UNIVATE, Njalsgade 76", "FRANKFURT", "LONDON", "MONTEVIDEO", "MEDELLÍN", "DENVER", "IASI", "3E Palat St. Palas, United Business Center 1 - 5th Floor", 
+			"Cra 48 A # 15 sur – 84",
+			"Rio Negro 1338/3", "125 Old Broad Street", "Eschersheimer Landstraße 14", "ROSARIO", "NEW YORK", "SEATTLE", "NEW JERSEY", "SKOPJE", 
+			"757 3rd Avenue Suite 1901, NY, 10017 USA", 
+			"Urquiza 2284", "12900 NE 180th Street, #240", "5 Hilltop Road, Mendham", "Kale Building, UI. 11 Mart Br. 2", 
+			"SOFIA", "89b Vitosha Blvd., Millenium Business Center, 9th & 10th Floor");
+	
 
 	public AboutPage(WebDriver driver) {
 		super(driver);
@@ -81,9 +81,24 @@ public class AboutPage extends BasePage {
 					.peek(log::debug) // prints list of elements not matching
 					.count() == 0;
 		}
+		else{
+		String[] stringAddress = addresses.toArray(new String[addresses.size()]);
+		for (int i = 0; i <  ADDRESSES_OF_ENDAVA_LOCATIONS.size() ; i++)
+		{
+			boolean logic = false;
+			for (int j = 0; j <  addresses.size(); j++){
+				if ( ADDRESSES_OF_ENDAVA_LOCATIONS.get(i).toString().equals(stringAddress[j].toString())){
+					logic = true;
+				}
+				if (j == addresses.size()-1 && logic == false)	{
+					log.debug("Not found: " + ADDRESSES_OF_ENDAVA_LOCATIONS.get(i));
+				}
+			}
+		}
 		log.debug("Number of grabbed addresses not matching. Size of set should be "
 				+ ADDRESSES_OF_ENDAVA_LOCATIONS.size() + " found: " + addresses.size());
 		return false;
+		}
 	}
 
 	public Set<String> getAllLocations() {

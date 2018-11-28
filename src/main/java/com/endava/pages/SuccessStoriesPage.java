@@ -16,16 +16,14 @@ public class SuccessStoriesPage extends BasePage {
 	public static final String FIRST_STORY_URL = ENDAVA_URL_EN + "/Success-Stories/Retail-Enhancing-a-Social-Awareness-Campaign-with-a-new-Interaction-Model";
 	private By heading = By.xpath("//*[@id=\"hero-contentcarousel\"]/div[1]/div/div/div/figure/figcaption/div/h2");
 	private By firstStoryHeading = By.xpath("//*[@id=\"hero-contentcarousel\"]/div[1]/div/div/div/figure/figcaption/div/h2");	
-	private By firstStory = By.cssSelector("body > section:nth-child(8) > div > div > div:nth-child(1) > a");
-	private String firstStoryText;
+	private By firstStory = By.xpath("//a[contains(.,'Supporting a social campaign through a versatile tapestry app')]");//By.cssSelector("body > section:nth-child(8) > div > div > div:nth-child(1) > a");
+	private By firstStoryText = By.xpath("//h2[contains(.,'Supporting a social campaign through a versatile tapestry app')]");
 	private static Logger log = Logger.getLogger(SuccessStoriesPage.class);
 	
 	public SuccessStoriesPage(WebDriver driver) {
 		super(driver);
-		scrollIntoView(firstStory);
-		firstStoryText = getTextFromElement(firstStory);
-	}
-	
+	}	
+
 	/**
 	 * @author jelena.corak
 	 * @return By heading element search context
@@ -54,7 +52,7 @@ public class SuccessStoriesPage extends BasePage {
 	 * @author jelena.corak
 	 * @return String first story heading text
 	 */
-	public String getFirstStoryText() {
+	public By getFirstStoryText() {
 		return firstStoryText;
 	}
 }
