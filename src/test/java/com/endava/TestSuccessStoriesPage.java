@@ -43,13 +43,13 @@ public class TestSuccessStoriesPage {
 		Utils.webDriverWaitVisibility(successStoriesPage.driver, successStoriesPage.getHeading());		
 		Assert.assertTrue(successStoriesPage.getTextFromElement(successStoriesPage.getHeading()).toUpperCase().contains(("Success Stories").toUpperCase()), "Text \"Success Stories\" not found!");
 		log.info("testHeading() : VALIDATION SUCCESSFUL! Success Stories page contains SUCCESS STORIES string.");
-		Utils.webDriverWaitVisibility(menuPage.driver, successStoriesPage.getFirstStory());	
+		Utils.webDriverWaitVisibility(successStoriesPage.driver, successStoriesPage.getFirstStory());	
 		successStoriesPage.scrollIntoView(successStoriesPage.getFirstStory());		
 		successStoriesPage.clickOnElement(successStoriesPage.getFirstStory());
 		successStoriesPage.assertPageTitle(SuccessStoriesPage.FIRST_STORY_TITLE);
 		successStoriesPage.assertPageUrl(SuccessStoriesPage.FIRST_STORY_URL);		
 		Assert.assertTrue(successStoriesPage.getTextFromElement(successStoriesPage.getFirstStoryHeading()).toUpperCase()
-				.equals(successStoriesPage.getFirstStoryText().toUpperCase()), 
+				.equals(successStoriesPage.getTextFromElement(successStoriesPage.getFirstStoryText()).toUpperCase()), 
 				"Text in the first story title does not match the text on the first story page heading.");
 		log.info("testFirstStoryHeading(): VALIDATION SUCCESSFUL! Click on the first story at Success Stories page takes to the first story page with a matching heading.");
 	}
