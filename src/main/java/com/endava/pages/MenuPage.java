@@ -19,6 +19,8 @@ public class MenuPage extends BasePage {
 	private By about = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[8]/a");
 	private By contact = By.xpath("//*[@id=\"mCSB_1_container\"]/div[1]/nav/ul/li[10]/a");
 	private By logo = By.xpath("//*[@id=\"header\"]/div/div[1]/div[1]/span/a");
+	private By careersMenuItem = By.xpath("(//a[contains(.,'Careers')])[1]"); 
+	private By industriesMenuItem = By.xpath("//a[@href='/en/Industries']");
 	private static Logger log = Logger.getLogger(MenuPage.class);
 
 	public MenuPage(WebDriver driver) {
@@ -105,5 +107,21 @@ public class MenuPage extends BasePage {
 	 */
 	public By getAutomationMenuItem() {
 		return automationMenuItem;
+	}
+	
+		/**
+	 * @author andrej.marin
+	 * @return By search context of Automation menu item
+	 */
+	public By getCareersPageMenuItem() {
+		return careersMenuItem;
+	} 
+	
+	/**
+	 * @author andrej.marin
+	 * @return By search context of Automation menu item
+	 */
+	public By getIndustriesPageMenuItem() {
+		return industriesMenuItem;
 	}
 }
