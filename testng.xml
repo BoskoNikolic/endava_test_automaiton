@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<!-- <test thread-count="5" name="TestHomePage">
+	<test thread-count="5" name="TestHomePage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestHomePage" />
@@ -35,7 +35,7 @@
 		<classes>
 			<class name="com.endava.TestContactPage" />
 		</classes>
-	</test>
+	</test> Test
 	<test thread-count="5" name="TestAboutPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
@@ -46,17 +46,24 @@
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestSuccessStoriesPage" />
-		</classes> -->
+		</classes>
+	</test> Test
 	<test thread-count="5" name="TestCareersPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestCareersPage" />
 		</classes>
-	</test> <!-- Test -->
+	</test> Test
 	<test thread-count="5" name="TestIndustriesPage">
 		<parameter name="browser" value="chrome" />
 		<classes>
 			<class name="com.endava.TestIndustriesPage" />
 		</classes>
-	</test> <!-- Test -->
+	</test> Test
+	<test thread-count="5" name="TestDigitalPage">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.endava.TestDigitalPage" />
+		</classes>
+	</test> Test	
 </suite> <!-- Suite -->
